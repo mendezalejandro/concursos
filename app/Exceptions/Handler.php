@@ -46,17 +46,17 @@ class Handler extends ExceptionHandler
     {
 
 
-      //dd($exception);
+      /*dd($exception);*/
 
-     if ($exception->getStatusCode() == 500)
+     /*if ($exception->getStatusCode() == 500)
         {
          return redirect('errors/500');
        }
 
-    if ($exception->getStatusCode() == 404)
+    /*if ($exception->getStatusCode() == 404)
        {
          return redirect('errors/404');
-       }
+       }*/
 
     /*if ($exception instanceof HttpException)
       {

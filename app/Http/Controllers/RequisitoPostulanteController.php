@@ -97,6 +97,11 @@ class RequisitoPostulanteController extends AppBaseController
      */
     public function edit($id)
     {
+      $requisitosItems = Requisitoitem::pluck('descripcion' , 'id');
+      $concursos = Concurso::pluck('referenciaGeneral' , 'id');
+      $postulantes = Postulante::where('tipo','Postulante')->pluck('nombres' , 'id');
+      $entregoRequisito = collect(['Si' => 'Si' , 'No' => 'No']);
+      $cumpleRequisito = collect(['Sin validar' => 'Sin validar' , 'Si' => 'Si', 'No' => 'No']);
         $requisitoPostulante = $this->requisitoPostulanteRepository->findWithoutFail($id);
 
         if (empty($requisitoPostulante)) {
@@ -105,7 +110,7 @@ class RequisitoPostulanteController extends AppBaseController
             return redirect(route('requisitoPostulantes.index'));
         }
 
-        return view('requisito_postulantes.edit')->with('requisitoPostulante', $requisitoPostulante);
+        return view('requisito_postulantes.edit',compact ('requisitosItems','entregoRequisito','cumpleRequisito','concursos','postulantes'))->with('requisitoPostulante', $requisitoPostulante);
     }
 
     /**
