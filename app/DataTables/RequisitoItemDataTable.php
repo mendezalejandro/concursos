@@ -27,7 +27,11 @@ class RequisitoItemDataTable extends DataTable
      */
     public function query()
     {
-        $requisitoItems = RequisitoItem::query();
+        $requisitoItems = RequisitoItem::query()->join('requisitos' , 'requisitositems.requisito_id' , '=' , 'requisitos.id')
+                                                ->select('requisitos.descripcion  as req_des' ,
+                                                         'requisitos.dedicacion  as req_ded' ,
+                                                         'requisitositems.id','requisitositems.descripcion'
+                                                         );
 
         return $this->applyScopes($requisitoItems);
     }
@@ -45,7 +49,7 @@ class RequisitoItemDataTable extends DataTable
             ->ajax('')
             ->parameters([
                 'dom' => 'Bfrtip',
-                'scrollX' => false,
+                'scrollX' => true,
                 'buttons' => [
                     'print',
                     'reset',
@@ -71,10 +75,11 @@ class RequisitoItemDataTable extends DataTable
      */
     private function getColumns()
     {
-        return [
-            'requisito_id' => ['name' => 'requisito_id', 'data' => 'requisito_id'],
-            'descripcion' => ['name' => 'descripcion', 'data' => 'descripcion']
-        ];
+      return [
+          'Requisito' => ['name' => 'requisito_id', 'data' => 'req_des'],
+          'Req Dedicacion' => ['name' => 'requisito_id', 'data' => 'req_ded'],
+          'descripcion' => ['name' => 'descripcion', 'data' => 'descripcion']
+      ];
     }
 
     /**
