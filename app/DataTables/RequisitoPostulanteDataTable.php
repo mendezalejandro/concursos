@@ -30,12 +30,16 @@ class RequisitoPostulanteDataTable extends DataTable
         $requisitoPostulantes = RequisitoPostulante::query()
                                         ->JOIN('personas','requisitospostulantes.postulante_id','=','personas.id')
                                         ->JOIN('concursos','requisitospostulantes.concurso_id','=','concursos.id')
+                                        ->JOIN('requisitositems','requisitospostulantes.requisitoitem_id','=','requisitositems.id')
                                         ->SELECT( 'personas.nombres as per_nom',
                                                   'personas.apellidos as per_ape',
                                                   'concursos.referenciaGeneral as con_ref' ,
+                                                  'requisitositems.descripcion as req_des',
                                                   'requisitospostulantes.id','requisitospostulantes.entregoRequisito as entregoRequisito' ,
                                                   'requisitospostulantes.id','requisitospostulantes.cumpleRequisito as cumpleRequisito')
                                         ->WHERE('tipo', 'Postulante');
+
+
 
 
         return $this->applyScopes($requisitoPostulantes);
@@ -81,9 +85,10 @@ class RequisitoPostulanteDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'Nombre' => ['name' => 'postulante_id', 'data' => 'per_nom'],
             'Apellido' => ['name' => 'postulante_id', 'data' => 'per_ape'],
-            'concurso_id' => ['name' => 'concurso_id', 'data' => 'con_ref'],
+            'Nombre' => ['name' => 'postulante_id', 'data' => 'per_nom'],
+            'Concurso' => ['name' => 'concurso_id', 'data' => 'con_ref'],
+            'Requisito' => ['name' => 'requisito_id', 'data' => 'req_des'],
             'Entregó Requisito' => ['name' => 'entregoRequisito', 'data' => 'entregoRequisito'],
             'Cumple Requisito' => ['name' => 'cumpleRequisito', 'data' => 'cumpleRequisito']
         ];
