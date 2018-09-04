@@ -7,12 +7,19 @@
 <!-- Postulante Id Field -->
 <div class="form-group">
     {!! Form::label('postulante_id', 'Postulante Id:') !!}
-    <p>{!! $requisitoPostulante->postulante_id !!}</p>
+    <p>
+      Identificador : {!! $requisitoPostulante->postulante_id !!} <br>
+      Documento :  {!! $requisitoPostulante->postulante->documento!!} <br>
+      Nombre : {!! $requisitoPostulante->postulante->apellidos!!} <br>
+      Apellido :  {!! $requisitoPostulante->postulante->nombres!!} <br>
+    </p>
+
+      <a href="{{ action('PostulanteController@show', $requisitoPostulante->postulante_id ) }}"><p> {!! Form::button('Ver Más!')!!}</a>
 </div>
+
 
 <!-- Requisitoestado Field -->
 <div class="form-group">
-    {!! Form::label('requisitoEstado', 'Requisitoestado:') !!}
-    <p>{!! $requisitoPostulante->requisitoEstado !!}</p>
+    {!! Form::label('cumpleRequisito', 'cumpleRequisito:') !!}
+    <p>{!! $requisitoPostulante->cumpleRequisito !!}</p>
 </div>
-

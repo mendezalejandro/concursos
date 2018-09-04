@@ -15,4 +15,3 @@
     {!! Form::label('descripcion', 'Descripcion:') !!}
     <p>{!! $requisitoItem->descripcion !!}</p>
 </div>
-

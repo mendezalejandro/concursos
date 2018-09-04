@@ -5,6 +5,8 @@
       Llamado : {!! $llamadoConcursos->llamado->codigo !!} <br>
       Año : {!! $llamadoConcursos->llamado->año !!}
     </p>
+    <a href="{{ action('LlamadoController@show', $llamadoConcursos->llamado_id ) }}"><p> {!! Form::button('Ver Más!')!!}</a>
+
 </div>
 
 <!-- Concurso Id Field -->
@@ -17,4 +19,5 @@
     Area : {!! $llamadoConcursos->concurso->asignatura->area->nombre !!} <br>
     Estado del Concurso : {!! $llamadoConcursos->concurso->estado !!}
   <p>
+  <a href="{{ action('ConcursoController@show', $llamadoConcursos->concurso_id ) }}"><p> {!! Form::button('Ver Más!')!!}</a>
 </div>
