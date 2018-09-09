@@ -57,7 +57,7 @@
 
   {!! Form::label('requisitoitem_id', 'Requisito') !!}
   {!! Form::select('requisitoitem_id', $requisitosItems , null , ['class' => 'form-control', 'placeholder' => 'Seleccione Opción']) !!}
-
+  <!--Form::checkbox('requisitoitem_id', $requisitosItems ) !!} -->
 </div>
 
 <div class="form-group col-sm-12">

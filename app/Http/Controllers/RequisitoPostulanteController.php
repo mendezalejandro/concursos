@@ -59,8 +59,8 @@ class RequisitoPostulanteController extends AppBaseController
      */
     public function store(CreateRequisitoPostulanteRequest $request)
     {
+        //guarda los request del formulario
         $input = $request->all();
-
         $requisitoPostulante = $this->requisitoPostulanteRepository->create($input);
 
         Flash::success('Requisito Postulante saved successfully.');

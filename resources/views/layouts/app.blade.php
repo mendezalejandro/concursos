@@ -28,7 +28,6 @@
         <!-- Logo -->
         <a href="{!! url('/home') !!}" class="logo">
             <b>CDUNAJ</b>
-   
         </a>
 
         <!-- Header Navbar -->
@@ -189,13 +188,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.js"></script>
  <script>
-          $(document).ready(function(){        
-           
-           
+          $(document).ready(function(){
             introJs().refresh()
-            
+
            if (localStorage.getItem("primeringreso") ==  null) {
-             	introJs().setOptions({ 
+             	introJs().setOptions({
                   	'skipLabel': 'Cerrar',
                     'nextLabel': 'Siguiente',
                     'prevLabel': 'Anterior',
@@ -206,17 +203,17 @@
                     'tooltipPosition': 'right',
                     'showStepNumbers' : 'false'
                 }).start();
-              	localStorage.setItem("primeringreso", "true");                    
+              	localStorage.setItem("primeringreso", "true");
            }
            else{}
-  		   	
-           $('#boton-consejos').click(function(){                       
+
+           $('#boton-consejos').click(function(){
   				introJs().showHints();
     	   });
-           
-           $('#boton-ayuda').click(function(){ 
-               
-            	introJs().setOptions({ 
+
+           $('#boton-ayuda').click(function(){
+
+            	introJs().setOptions({
                   	'skipLabel': 'Cerrar',
                     'nextLabel': 'Siguiente',
                     'prevLabel': 'Anterior',
@@ -227,7 +224,7 @@
                     'tooltipPosition': 'right',
                     'showStepNumbers' : 'false'
                 }).start();
-           });   
+           });
 
           });
 </script>

@@ -1,8 +1,4 @@
-@php
-  echo $cargoConcursado;
-@endphp
-<!-- Universidad Id Field -->
-<div class="form-group">
+  <div class="form-group">
     {!! Form::label('persona_id', 'Persona:') !!}
     <p>
     Identificador : {!! $cargoConcursado->persona->id !!} <br>
