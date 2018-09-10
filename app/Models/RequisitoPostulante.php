@@ -70,8 +70,12 @@ class RequisitoPostulante extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function requisitositem()
+    public function requisitoitem()
     {
-        return $this->belongsTo(\App\Models\Requisitositem::class);
+        return $this->belongsTo(\App\Models\RequisitoItem::class);
     }
+
+
+
+
 }

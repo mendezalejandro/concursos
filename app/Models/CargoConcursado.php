@@ -60,9 +60,9 @@ class CargoConcursado extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function universidade()
+    public function universidad()
     {
-        return $this->belongsTo(\App\Models\Universidade::class);
+        return $this->belongsTo(\App\Models\Universidad::class);
     }
 
     public function persona()

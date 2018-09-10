@@ -7,7 +7,8 @@
 <!-- Categoria Id Field -->
 <div class="form-group">
     {!! Form::label('categoria_id', 'Categoria Id:') !!}
-    <p>{!! $requisito->categoria_id !!}</p>
+    <p>{!! $requisito->categoria->nombre !!}</p>
+
 </div>
 
 <!-- Perfil Id Field -->
@@ -27,4 +28,3 @@
     {!! Form::label('descripcion', 'Descripcion:') !!}
     <p>{!! $requisito->descripcion !!}</p>
 </div>
-

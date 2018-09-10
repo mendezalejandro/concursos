@@ -179,7 +179,7 @@
   <!-- <button data-intro='example2' data-step="2" data-hint="Boton de ayuda" id="boton-ayuda"> Ayuda </button> -->
 
 
-        <strong>Copyright © 2018 <a href="#" target="_blank">Alumnos de Ingenieria de Software 2</a>.</strong> All rights reserved.
+        <strong>Copyright © 2018 <a href="#" target="_blank">Alumnos de Administrador de Proyectos 2018</a>.</strong> All rights reserved.
     </footer>
 
 </div>

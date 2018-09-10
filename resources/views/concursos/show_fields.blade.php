@@ -67,18 +67,20 @@
 <div class="form-group">
     {!! Form::label('fechaSustanciacion', 'Fechasustanciacion:') !!}
     <p>{!! $concurso->fechaSustanciacion !!}</p>
-</div>
+    </div>
 
 <!-- Usuariosustanciacion Field -->
 <div class="form-group">
     {!! Form::label('usuarioSustanciacion', 'Usuariosustanciacion:') !!}
     <p>{!! $concurso->userSus->name !!}</p>
+    <a href="{{ action('UserController@show', $concurso->userSus->id ) }}"><p> {!! Form::button('Ver Más!')!!}</a>
 </div>
 
 <!-- Usuariocierre Field -->
 <div class="form-group">
     {!! Form::label('usuarioCierre', 'Usuariocierre:') !!}
     <p>{!! $concurso->userCie->name !!}</p>
+    <a href="{{ action('UserController@show', $concurso->userCie->id ) }}"><p> {!! Form::button('Ver Más!')!!}</a>
 </div>
 
 <!-- Observaciones Field -->
