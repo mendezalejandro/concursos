@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Input;
+use App\Models\Concurso;
+use App\Models\Requisito;
+use App\Models\RequisitoItem;
 
 Route::get('/', function () {
   return redirect('login');
@@ -14,6 +18,25 @@ Route::get('errors/500', function(){
 Route::get('errors/404', function(){
   return view('errors.404');
   //abort(404);
+});
+
+Route::get('/ajax-concursos', function(){
+  $concursoid = Input::get('concursoid');
+  $concurso = Concurso::where('id', '=',$concursoid)->first();
+
+  $requisitos = Requisito::where('categoria_id',"=",$concurso->categoria_id)
+                          ->where('perfil_id',"=",$concurso->perfil_id)
+                          ->where('dedicacion',"=",$concurso->dedicacion)
+                          ->get()
+  ;
+  return Response::json($requisitos);
+});
+
+Route::get('/ajax-requisitos', function(){
+  $requisitoid = Input::get('requisitoid');
+  $requisitositems = RequisitoItem::where('requisito_id', '=',$requisitoid)->get();
+
+  return Response::json($requisitositems);
 });
 
 Route::middleware(['Administrador' , 'Administrativo' ])->group(function () {
@@ -51,6 +74,8 @@ Route::middleware(['Administrador' , 'Administrativo' ])->group(function () {
   Route::resource('perfiles', 'PerfilesController');
 
   Route::resource('postulantes', 'PostulanteController');
+
+  Route::resource('mesaEntradas', 'MesaEntradaController');
 
   Route::resource('requisitos', 'RequisitoController');
 
@@ -99,6 +124,8 @@ Route::middleware(['Miembro'])->group(function () {
   Route::resource('perfiles', 'PerfilesController', ['except' => ['edit', 'create', 'store', 'update', 'destroy'] ]);
 
   Route::resource('postulantes', 'PostulanteController', ['except' => ['edit', 'create', 'store', 'update', 'destroy'] ]);
+
+  Route::resource('mesaEntradas', 'MesaEntradaController');
 
   Route::resource('requisitos', 'RequisitoController', ['except' => ['edit', 'create', 'store', 'update', 'destroy'] ]);
 
@@ -149,6 +176,8 @@ Auth::routes();
   Route::resource('perfiles', 'PerfilesController');
 
   Route::resource('postulantes', 'PostulanteController');
+
+  Route::resource('mesaEntradas', 'MesaEntradaController');
 
   Route::resource('requisitos', 'RequisitoController');
 

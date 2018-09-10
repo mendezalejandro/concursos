@@ -21,10 +21,10 @@
 </head>
 
 <body class="skin-blue sidebar-mini">
+
 <div class="wrapper">
     <!-- Main Header -->
     <header class="main-header">
-
         <!-- Logo -->
         <a href="{!! url('/home') !!}" class="logo">
             <b>CDUNAJ</b>
@@ -156,6 +156,9 @@
   Ayuda
 </button>
 <!-- Modal -->
+<div id='ajax_loader' style="position: fixed; left: 50%; top: 50%; display: none;">
+    <img src="http://downgraf.com/wp-content/uploads/2014/09/01-progress.gif" height="20%" width="20%"></img>
+</div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -234,6 +237,46 @@
 <!-- AdminLTE App -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
 
+<script>
+$('#concursosAjaxSelect').on('change',function(e){
+    var concursoid = e.target.value;
+    $("#ajax_loader").show();
+    $.get('/ajax-concursos?concursoid='+concursoid, function(data){
+
+        //cargo el select de templates de requisitos
+        $('#requisitosAjaxSelect').empty();
+        $.each(data, function(index, reqObject){
+          $('#requisitosAjaxSelect').append('<option value="'+ reqObject.id+'">'+reqObject.descripcion + "</option>")
+        });
+
+        //cargo la grilla con requisitos items
+        loadRequisitosItems();
+
+        $("#ajax_loader").hide();
+
+    })
+});
+
+  $('#requisitosAjaxSelect').on('change',function(e){
+    if (!($("#ajax_loader").is(':visible'))) $("#ajax_loader").show();
+
+    loadRequisitosItems();
+  }); 
+
+function loadRequisitosItems()
+{
+  //cada vez que cambio el template de requisitos, traigo los nuevos items
+      $.get('/ajax-requisitos?requisitoid='+$('#requisitosAjaxSelect').val(), function(data){
+          $('#requisitositemsList').empty();
+          $.each(data, function(index, reqItemsObject){
+            $('#requisitositemsList').append('<li><label><input value="'+reqItemsObject.id+'" type="checkbox"><span>'+reqItemsObject.descripcion+'</span></label></li>');
+          });
+
+          if (($("#ajax_loader").is(':visible'))) $("#ajax_loader").hide();
+      })
+}
+
+</script>
 @yield('scripts')
 </body>
 </html>

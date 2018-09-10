@@ -53,7 +53,9 @@
     <li class="{{ Request::is('Postulante*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
         <a href="{!! route('postulantes.index') !!}"><i class="fa fa-user-plus text-red"></i><span>Postulantes</span></a>
     </li>
-
+    <li class="{{ Request::is('MesaEntrada*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
+        <a href="{!! route('mesaEntradas.index') !!}"><i class="fa fa-user-plus text-red"></i><span>Mesa de entradas</span></a>
+    </li>
   </ul>
 </li>
 <!---------------------------------------------------------------------------------------------------------------------->
