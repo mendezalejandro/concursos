@@ -27,7 +27,12 @@ class RequisitoDataTable extends DataTable
      */
     public function query()
     {
-        $requisitos = Requisito::query();
+        $requisitos = Requisito::query()->JOIN('categorias','requisitos.categoria_id','=','categorias.id')
+                                        ->JOIN('perfiles','requisitos.perfil_id','=','perfiles.id')
+                                        ->SELECT( 'categorias.nombre as cat_nom',
+                                                  'perfiles.nombre as per_nom' ,
+                                                  'requisitos.id','requisitos.dedicacion as dedicacion' ,
+                                                  'requisitos.id','requisitos.descripcion as descripcion');
 
         return $this->applyScopes($requisitos);
     }
@@ -45,7 +50,7 @@ class RequisitoDataTable extends DataTable
             ->ajax('')
             ->parameters([
                 'dom' => 'Bfrtip',
-                'scrollX' => false,
+                'scrollX' => true,
                 'buttons' => [
                     'print',
                     'reset',
@@ -72,10 +77,10 @@ class RequisitoDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'categoria_id' => ['name' => 'categoria_id', 'data' => 'categoria_id'],
-            'perfil_id' => ['name' => 'perfil_id', 'data' => 'perfil_id'],
-            'dedicacion' => ['name' => 'dedicacion', 'data' => 'dedicacion'],
-            'descripcion' => ['name' => 'descripcion', 'data' => 'descripcion']
+            'Categoria' => ['name' => 'categoria_id', 'data' => 'cat_nom'],
+            'Perfil' => ['name' => 'perfil_id', 'data' => 'per_nom'],
+            'Dedicacion' => ['name' => 'dedicacion', 'data' => 'dedicacion'],
+            'Descripcion' => ['name' => 'descripcion', 'data' => 'descripcion']
         ];
     }
 

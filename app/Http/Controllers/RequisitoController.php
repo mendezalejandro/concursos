@@ -10,6 +10,8 @@ use App\Repositories\RequisitoRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\Categoria;
+use App\Models\Perfiles;
 
 class RequisitoController extends AppBaseController
 {
@@ -39,7 +41,10 @@ class RequisitoController extends AppBaseController
      */
     public function create()
     {
-        return view('requisitos.create');
+        $categorias = Categoria::pluck('nombre' , 'id');
+        $perfiles = Perfiles::pluck('nombre' , 'id');
+        $dedicaciones = Collect(['Simple' => 'Simple' , 'Exclusiva' => 'Exclusiva' , 'Semiexclusiva' => 'Semiexclusiva']);
+        return view('requisitos.create' , compact('categorias', 'perfiles', 'dedicaciones'));
     }
 
     /**
@@ -89,7 +94,11 @@ class RequisitoController extends AppBaseController
      */
     public function edit($id)
     {
+
         $requisito = $this->requisitoRepository->findWithoutFail($id);
+        $categorias = Categoria::pluck('nombre' , 'id');
+        $perfiles = Perfiles::pluck('nombre' , 'id');
+        $dedicaciones = Collect(['Simple' => 'Simple' , 'Exclusiva' => 'Exclusiva' , 'Semiexclusiva' => 'Semiexclusiva']);
 
         if (empty($requisito)) {
             Flash::error('Requisito not found');
@@ -97,7 +106,7 @@ class RequisitoController extends AppBaseController
             return redirect(route('requisitos.index'));
         }
 
-        return view('requisitos.edit')->with('requisito', $requisito);
+        return view('requisitos.edit', compact('categorias', 'perfiles' , 'dedicaciones'))->with('requisito', $requisito);
     }
 
     /**

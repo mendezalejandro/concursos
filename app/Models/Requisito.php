@@ -62,7 +62,7 @@ class Requisito extends Model
      **/
     public function perfile()
     {
-        return $this->belongsTo(\App\Models\Perfile::class);
+        return $this->belongsTo(\App\Models\Perfiles::class);
     }
 
     /**
