@@ -155,7 +155,7 @@
   <div class="row">
         <div class="col-md-6">
           <!-- Line chart -->
-          <div class="box box-primary">
+          <div class="box box-primary collapsed-box">
             <div class="box-header with-border">
               <i class="fa fa-bar-chart-o"></i>
 
@@ -197,7 +197,7 @@
           <!-- /.box -->
 
           <!-- Area chart -->
-          <div class="box box-primary">
+          <div class="box box-primary collapsed-box">
             <div class="box-header with-border">
               <i class="fa fa-bar-chart-o"></i>
 
@@ -221,7 +221,7 @@
 
         <div class="col-md-6">
           <!-- Bar chart -->
-          <div class="box box-primary">
+          <div class="box box-primary collapsed-box">
             <div class="box-header with-border">
               <i class="fa fa-bar-chart-o"></i>
 
@@ -241,7 +241,7 @@
           <!-- /.box -->
 
           <!-- Donut chart -->
-          <div class="box box-primary">
+          <div class="box box-primary collapsed-box">
             <div class="box-header with-border">
               <i class="fa fa-bar-chart-o"></i>
 
