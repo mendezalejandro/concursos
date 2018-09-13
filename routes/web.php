@@ -19,6 +19,14 @@ Route::get('errors/404', function(){
   return view('errors.404');
   //abort(404);
 });
+Route::get('/reportes', function () {
+  return view('reportes.reportes');
+});
+
+
+// Email related routes
+Route::get('mail/send', 'MailController@send');
+
 
 Route::get('/ajax-concursos', function(){
   $concursoid = Input::get('concursoid');
