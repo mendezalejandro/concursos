@@ -57,7 +57,7 @@ class Concurso extends Model
         'categoria_id' => 'integer',
         'referenciaGeneral' => 'string',
         'referenciaInstituto' => 'string',
-        'cargos' => 'boolean',
+        'cargos' => 'integer',
         'lineaDesarrollo' => 'string',
         'requisitos' => 'string',
         'expediente' => 'string',
