@@ -44,7 +44,7 @@ Route::get('/ajax-requisitos', function(){
   $requisitoid = Input::get('requisitoid');
   $requisitositems = RequisitoItem::where('requisito_id', '=',$requisitoid)->get();
 
-  return Response::json($requisitositems);
+  //return Response::json($requisitositems);
 });
 
 Route::middleware(['Administrador' , 'Administrativo' ])->group(function () {

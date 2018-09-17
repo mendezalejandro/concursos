@@ -73,12 +73,28 @@
 </div>
 
 <!-- AsignacionConcurso - Nombres Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     {!! Form::label('requisito_id', 'Requisito:') !!}
     {!! Form::select('requisito_id', $requisitos  , null, ['id'=>'requisitosAjaxSelect', 'class' => 'form-control' , 'placeholder' => 'Seleccione listado de requisitos']) !!}
-
-    <ul id="requisitositemsList"></ul>
 </div>
+
+<!-- Listado de requisitos -->
+<div class="form-group col-sm-12">
+    <ul>
+    @foreach ($requisitositems as $requisitoitem_id => $requisitoitem )
+    <li>
+        {!! Form::checkbox( 'requisitositems[]',
+                          $requisitoitem_id,
+                          false,
+                          ['id' => $requisitoitem] 
+                          ) !!}
+        {!! Form::label($requisitoitem,  $requisitoitem) !!}
+    </li>
+    @endforeach
+    </ul>
+</div>
+
+                
 
 
 

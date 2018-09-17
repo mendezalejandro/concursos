@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\DataTables\MesaEntradaDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateMesaEntradaRequest;
@@ -10,7 +11,11 @@ use App\Repositories\MesaEntradaRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Concurso;
+use App\Models\ConcursoPostulante;
+use App\Models\RequisitoPostulante;
+use App\Models\Postulante;
 use App\Models\Requisito;
+use App\Models\RequisitoItem;
 use Response;
 
 class MesaEntradaController extends AppBaseController
@@ -48,10 +53,14 @@ class MesaEntradaController extends AppBaseController
 
         $requisitos = Requisito::where('categoria_id',"=",$concurso->categoria_id)
         ->where('perfil_id',"=",$concurso->perfil_id)
-        ->where('dedicacion',"=",$concurso->dedicacion)
+        ->where('dedicacion',"=",$concurso->dedicacion);
+
+        $requisitositems = RequisitoItem::where('requisito_id',"=",$requisitos->first()->id)
         ->pluck('descripcion' , 'id');
+
+        $requisitos = $requisitos->pluck('descripcion' , 'id');
         
-        return view('mesaentradas.create' , compact('concursos', 'requisitos'));
+        return view('mesaentradas.create' , compact('concursos', 'requisitos', 'requisitositems'));
     }
 
     /**
@@ -63,12 +72,47 @@ class MesaEntradaController extends AppBaseController
      */
     public function store(CreateMesaEntradaRequest $request)
     {
-        $input = $request->all();
-        $input['tipo'] = '1';
-        $mesaentrada = $this->mesaEntradasRepository->create($input);
+        DB::beginTransaction();
+        try{
+            //capturo el request
+            $input = $request->all();
+            $input['tipo'] = '1';
 
-        Flash::success('Postulante saved successfully.');
+            //convierto request en objeto modelo y lo guardo
+            $postulante = new Postulante();
+            $postulante->fill($input);
+            $postulante->save();
 
+            //asocio las entidades relacionadas postulante/concursos, postulante/requisitos
+            $concursopostulante = new ConcursoPostulante();
+            $concursopostulante->postulante_id = $postulante->id;
+            $concursopostulante->concurso_id = $input['concurso_id'];
+            $concursopostulante->fechaPresentacion = date('Y-m-d H:i:s');
+            $concursopostulante->tipo = 1;//tipo postulante
+            $concursopostulante->save();
+
+            $requisitositems = RequisitoItem::where('requisito_id','=',$input['requisito_id'])->pluck('descripcion' , 'id');
+            //asocio todos los items requeridos para el puesto
+            foreach ($requisitositems as $requisitoitemid => $requisitoitem) {
+                $requisitopostulante = new RequisitoPostulante();
+                $requisitopostulante->requisitoitem_id= $requisitoitemid;
+                $requisitopostulante->concurso_id= $input['concurso_id'];
+                $requisitopostulante->postulante_id = $postulante->id;
+                //verifico si el usuario cargo el requisito como entregado o no.
+                $itemSelected = in_array((string)$requisitoitemid,$input['requisitositems']);
+                $requisitopostulante->entregoRequisito = ($itemSelected ?'Si':'No');
+                $requisitopostulante->cumpleRequisito = 'Sin validar';
+                $requisitopostulante->save();
+            }
+
+            DB::commit();
+            Flash::success('Postulante creado.');
+        }
+        catch(\Exception $e)
+        {
+            DB::rollBack();
+            Flash::error("Se produjo un error al intentar guardar la información del postulante. \nError: ".$e->getMessage());
+        }
         return redirect(route('mesaEntradas.index'));
     }
 
