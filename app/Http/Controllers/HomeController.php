@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Concurso;
 class HomeController extends Controller
 {
     public function __construct()
@@ -19,6 +19,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = Concurso::select('concursos.referenciaGeneral' ,'concursos.cargos' )->get();
+        return view('home', ['data'=>$data]);
     }
 }
