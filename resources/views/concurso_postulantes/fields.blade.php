@@ -1,30 +1,33 @@
 <!-- Concurso Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('concurso_id', 'Concurso:') !!}
+    {!! Form::label('concurso_id', 'CONCURSO') !!}
+       <span class="text-danger"> (*)  </span>
     {!! Form::select('concurso_id', $concursos  , null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Concurso']) !!}
 </div>
 
 <!-- Postulante Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('postulante_id', 'Postulante:') !!}
+    {!! Form::label('postulante_id', 'POSTULANTE') !!}
+       <span class="text-danger"> (*)  </span>
     {!! Form::select('postulante_id', $postulantes , null, ['class' => 'form-control', 'placeholder' => 'Seleccione Postulante']) !!}
 </div>
 
 <!-- Fechapresentacion Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('fechaPresentacion', 'Fecha de Presentacion:') !!}
+    {!! Form::label('fechaPresentacion', 'FECHA DE PRESENTACION') !!}
     {!! Form::date('fechaPresentacion',null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Tipo Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('tipo', 'Tipo de Postulante:') !!}
+    {!! Form::label('tipo', 'TIPO DE POSTULANTE') !!}
+       <span class="text-danger"> (*)  </span>
     {!! Form::select('tipo', $tipoPostulantes,  null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Tipo']) !!}
 </div>
 
 <!-- Ordenmerito Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('ordenMerito', 'Orden de Merito:') !!}
+    {!! Form::label('ordenMerito', 'ORDEN DE MÉRITO') !!}
     {!! Form::text('ordenMerito',  null, ['class' => 'form-control' ]) !!}
 </div>
 

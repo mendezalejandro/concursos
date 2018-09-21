@@ -15,7 +15,8 @@
         <div class="form-group">
           <!-- Concursos Field -->
           <div class="form-group col-sm-12">
-              {!! Form::label('concurso_id', 'Concurso:') !!}
+              {!! Form::label('concurso_id', 'CONCURSO') !!}
+              <span class="text-danger"> (*)  </span>
               {!! Form::select ('concurso_id', $concursos, null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Concurso']) !!}
           </div>
         </div>
@@ -42,7 +43,8 @@
         <div class="form-group">
           <!-- Concursos Field -->
           <div class="form-group col-sm-12">
-            {!! Form::label('postulante_id', 'Postulante:') !!}
+            {!! Form::label('postulante_id', 'POSTULANTE') !!}
+            <span class="text-danger"> (*)  </span>
             {!! Form::select('postulante_id', $postulantes , null, ['class' => 'form-control', 'placeholder' => 'Seleccione Postulante']) !!}
           </div>
        </div>
@@ -55,18 +57,20 @@
 <!-- Requisito item Field -->
 <div class="form-group col-sm-12">
 
-  {!! Form::label('requisitoitem_id', 'Requisito') !!}
+  {!! Form::label('requisitoitem_id', 'REQUISITO') !!}
+  <span class="text-danger"> (*)  </span>
   {!! Form::select('requisitoitem_id', $requisitosItems , null , ['class' => 'form-control', 'placeholder' => 'Seleccione Opción']) !!}
   <!--Form::checkbox('requisitoitem_id', $requisitosItems ) !!} -->
 </div>
 
 <div class="form-group col-sm-12">
-  {!! Form::label('entregoRequisito', 'Entrego Requisitos:') !!}
+  {!! Form::label('entregoRequisito', 'ENTREGO REQUISITOS') !!}
+  <span class="text-danger"> (*)  </span>
   {!! Form::select('entregoRequisito', $entregoRequisito, null ,  ['class' => 'form-control', 'placeholder' => 'Seleccione Opción']) !!}
 </div>
 <!-- Etrego requisito Field -->
 <div class="form-group col-sm-12">
-    {!! Form::label('cumpleRequisito', 'Cumple requisitos:') !!}
+    {!! Form::label('cumpleRequisito', 'CUMPLE CON LOS REQUISITOS') !!}
     {!! Form::select('cumpleRequisito', $cumpleRequisito, null ,  ['class' => 'form-control', 'placeholder' => 'Seleccione Opción']) !!}
 </div>
 

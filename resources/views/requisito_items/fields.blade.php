@@ -1,12 +1,14 @@
 <!-- Requisito Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('requisito_id', 'Requisito Id:') !!}
+    {!! Form::label('requisito_id', 'REQUISITO') !!}
+    <span class="text-danger"> (*)  </span>
     {!! Form::number('requisito_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Descripcion Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('descripcion', 'Descripcion:') !!}
+    {!! Form::label('descripcion', 'DESCRIPCION') !!}
+    <span class="text-danger"> (*)  </span>
     {!! Form::text('descripcion', null, ['class' => 'form-control']) !!}
 </div>
 

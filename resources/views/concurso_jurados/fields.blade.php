@@ -1,29 +1,34 @@
 <!-- Categoria Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('categoria_id', 'Categoria:') !!}
+    {!! Form::label('categoria_id', 'CATEGORIA') !!}
+       <span class="text-danger"> (*)  </span>
     {!! Form::select('categoria_id', $categorias  , null, ['class' => 'form-control' , 'placeholder' => 'Seleccione categoria']) !!}
 </div>
 <!-- Jurado Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('concurso_id', 'Concurso:') !!}
+    {!! Form::label('concurso_id', 'CONCURSO') !!}
+       <span class="text-danger"> (*)  </span>
     {!! Form::select('concurso_id', $concursos  , null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Concurso']) !!}
 </div>
 
 <!-- Jurado Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('jurado_id', 'Jurado:') !!}
+    {!! Form::label('jurado_id', 'JURADO') !!}
+       <span class="text-danger"> (*)  </span>
     {!! Form::select('jurado_id', $jurados  , null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Jurado']) !!}
 </div>
 
 <!-- Nivel Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('nivel', 'Nivel:') !!}
+    {!! Form::label('nivel', 'NIVEL') !!}
+       <span class="text-danger"> (*)  </span>
     {!! Form::select('nivel', $niveles , null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Nivel']) !!}
 </div>
 
 <!-- Tipo Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('tipo', 'Tipo de Jurado:') !!}
+    {!! Form::label('tipo', 'TIPO DE JURADO') !!}
+       <span class="text-danger"> (*)  </span>
     {!! Form::select('tipo', $tipoJurados , null, ['class' => 'form-control' , 'placeholder' => 'Seleccione TIpo de Jurado']) !!}
 </div>
 

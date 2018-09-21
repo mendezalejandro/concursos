@@ -1,11 +1,13 @@
 <!-- Lllamado Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('llamado_id', 'Llamado:') !!}
+    {!! Form::label('llamado_id', 'LLAMADO') !!}
+    <span class="text-danger"> (*)  </span>
     {!! Form::select('llamado_id', $llamados ,  null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Llamado']) !!}
 </div>
 <!-- Concurso Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('concurso_id', 'Concurso:') !!}
+    {!! Form::label('concurso_id', 'CONCURSO') !!}
+    <span class="text-danger"> (*)  </span>
     {!! Form::select('concurso_id', $concursos ,  null, ['class' => 'form-control', 'placeholder' => 'Seleccion Concurso']) !!}
 </div>
 
