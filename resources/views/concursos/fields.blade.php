@@ -15,6 +15,7 @@
 <!-- Categoria Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('categoria_id', 'CATEGORIA') !!}
+     <span class="text-danger"> (*)  </span>
     {!! Form::select('categoria_id', $categorias , null, ['class' => 'form-control', 'placeholder' => 'Seleccione Categoria']) !!}
 </div>
 
@@ -28,12 +29,14 @@
 <!-- Referenciainstituto Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('referenciaInstituto', 'REFERENCIA INSTITUTO') !!}
+    <span class="text-danger"> (*)  </span>
     {!! Form::text('referenciaInstituto', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Cargos Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('cargos', 'CARGOS') !!}
+    <span class="text-danger"> (*)  </span>
     {!! Form::text('cargos', null, ['class' => 'form-control']) !!}
     </label>
 </div>
@@ -107,6 +110,7 @@
 <!-- Dedicacion Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('dedicacion', 'DEDICACION') !!}
+     <span class="text-danger"> (*)  </span>
     {!! Form::select('dedicacion', $dedicaciones , null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Dedicacion']) !!}
 </div>
 

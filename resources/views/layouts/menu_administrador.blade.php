@@ -103,7 +103,7 @@
 </a>
 <ul class="treeview-menu">
   <li class="{{ Request::is('Area*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
-      <a href="{!! route('areas.index') !!}"><i class="fa fa-adn text-red"></i><span>Areas</span></a>
+      <a href="{!! route('areas.index') !!}"><i class="fa fa-adn text-red"></i><span>Areas Temáticas</span></a>
   </li>
 
   <li class="{{ Request::is('Asignatura*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">

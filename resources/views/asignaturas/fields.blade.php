@@ -7,7 +7,7 @@
 
 <!-- Area Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('area_id', 'AREA') !!}
+    {!! Form::label('area_id', 'ÁREA TEMÁTICA') !!}
     <span class="text-danger"> (*)  </span>
     {!! Form::select('area_id', $areas , null ,  ['class' => 'form-control' , 'placeholder' => 'Seleccione Asignatura']) !!}
 </div>
