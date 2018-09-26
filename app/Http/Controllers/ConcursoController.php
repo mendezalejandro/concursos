@@ -14,6 +14,7 @@ use App\Models\Asignatura;
 use App\Models\Categoria;
 use App\Models\Perfiles;
 use App\Models\User;
+use App\Models\Concurso;
 
 class ConcursoController extends AppBaseController
 {
@@ -81,7 +82,7 @@ class ConcursoController extends AppBaseController
     {
         $concurso = $this->concursoRepository->findWithoutFail($id);
 
-        
+
         if (empty($concurso)) {
             Flash::error('Concurso not found');
 
@@ -166,4 +167,31 @@ class ConcursoController extends AppBaseController
 
         return redirect(route('concursos.index'));
     }
+
+
+/*----------------Jorge Gamez------------------*/
+    //cambia de estado a un concurso
+
+    public function abierto($id){
+	Concurso::where('id', $id)->update(['estado' => 'Abierto']);
+
+    	return redirect(route('concursos.index'));}
+
+    public function cerrado($id){
+	Concurso::where('id', $id)->update(['estado' => 'Cerrado']);
+
+    	return redirect(route('concursos.index'));}
+
+    public function Impugnado($id){
+	Concurso::where('id', $id)->update(['estado' => 'Impugnado']);
+
+	return redirect(route('concursos.index'));}
+
+    public function vacante($id){
+	Concurso::where('id', $id)->update(['estado' => 'Vacante']);
+
+	return redirect(route('concursos.index'));}
+
+/*----------------Jorge Gamez------------------*/
+    //cambia de estado a un concurso
 }

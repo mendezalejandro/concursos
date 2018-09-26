@@ -23,10 +23,15 @@ Route::get('/reportes', function () {
   return view('reportes.reportes');
 });
 
-
+/*----------------Jorge Gamez------------------*/
+//cambia de estado a un concurso
+Route::get('/abierto/{id}','ConcursoController@abierto');
+Route::get('/cerrado/{id}','ConcursoController@cerrado');
+Route::get('/impugnado/{id}','ConcursoController@impugnado');
+Route::get('/vacante/{id}','ConcursoController@vacante');
 // Email related routes
-Route::get('mail/send', 'MailController@send');
-
+Route::get('mail/send/{id}', 'MailController@send');
+/*----------------------------------------------------*/
 
 Route::get('/ajax-concursos', function(){
   $concursoid = Input::get('concursoid');
