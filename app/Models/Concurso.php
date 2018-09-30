@@ -82,7 +82,6 @@ class Concurso extends Model
       'cargos' => 'numeric',
       'fechaInicio' => 'required',
       'fechaFin' => 'required',
-      'estado' => 'required',
       'dedicacion' => 'required'
     ];
 

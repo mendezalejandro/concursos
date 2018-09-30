@@ -25,7 +25,7 @@ Route::get('/reportes', function () {
 
 /*----------------Jorge Gamez------------------*/
 //cambia de estado a un concurso
-Route::get('/abierto/{id}','ConcursoController@abierto');
+Route::get('/pendiente/{id}','ConcursoController@pendiente');
 Route::get('/cerrado/{id}','ConcursoController@cerrado');
 Route::get('/impugnado/{id}','ConcursoController@impugnado');
 Route::get('/vacante/{id}','ConcursoController@vacante');
@@ -49,7 +49,7 @@ Route::get('/ajax-requisitos', function(){
   $requisitoid = Input::get('requisitoid');
   $requisitositems = RequisitoItem::where('requisito_id', '=',$requisitoid)->get();
 
-  //return Response::json($requisitositems);
+  return Response::json($requisitositems);
 });
 
 Route::middleware(['Administrador' , 'Administrativo' ])->group(function () {

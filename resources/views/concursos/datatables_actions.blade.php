@@ -25,7 +25,7 @@
 <button type="button" class="btn btn-success btn-xs dropdown-toggle"
  data-toggle="dropdown">Cambiar Estado<span class="caret"></span></button>
 <ul class="dropdown-menu" role="menu">
-  <li><a href="{{ url('/abierto', $id ) }}">Abierto</a></li>
+  <li><a href="{{ url('/pendiente', $id ) }}">Pendiente</a></li>
   <li><a href="{{ url('/cerrado', $id ) }}">Cerrado</a></li>
   <li><a href="{{ url('/impugnado', $id ) }}">Impugnado</a></li>
   <li><a href="{{ url('/vacante', $id ) }}">Vacante</a></li>

@@ -56,7 +56,7 @@
 <div class="form-group col-sm-12">
     <section class="content-header">
             <h1>
-                Asignacion de concursos
+                Asignación de concursos
             </h1>
     </section>
 </div>
@@ -71,7 +71,7 @@
 <div class="form-group col-sm-12">
     <section class="content-header">
             <h1>
-            Documentacion requerida
+            Documentación requerida
             </h1>
     </section>
 </div>
@@ -84,7 +84,7 @@
 
 <!-- Listado de requisitos -->
 <div class="form-group col-sm-12">
-    <ul>
+    <ul id="requisitositemsList">
     @foreach ($requisitositems as $requisitoitem_id => $requisitoitem )
     <li>
         {!! Form::checkbox( 'requisitositems[]',
@@ -97,13 +97,6 @@
     @endforeach
     </ul>
 </div>
-
-                
-
-
-
-
-
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

@@ -38,9 +38,3 @@
     {!! Form::label('tipo', 'Tipo:') !!}
     <p>{!! $concursoPostulante->tipo !!}</p>
 </div>
-
-<!-- Ordenmerito Field -->
-<div class="form-group">
-    {!! Form::label('ordenMerito', 'Ordenmerito:') !!}
-    <p>{!! $concursoPostulante->ordenMerito !!}</p>
-</div>

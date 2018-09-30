@@ -25,12 +25,6 @@
     {!! Form::select('tipo', $tipoPostulantes,  null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Tipo']) !!}
 </div>
 
-<!-- Ordenmerito Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('ordenMerito', 'ORDEN DE MÉRITO') !!}
-    {!! Form::text('ordenMerito',  null, ['class' => 'form-control' ]) !!}
-</div>
-
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

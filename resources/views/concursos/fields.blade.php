@@ -19,6 +19,13 @@
     {!! Form::select('categoria_id', $categorias , null, ['class' => 'form-control', 'placeholder' => 'Seleccione Categoria']) !!}
 </div>
 
+<!-- Dedicacion Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('dedicacion', 'DEDICACIÓN') !!}
+     <span class="text-danger"> (*)  </span>
+    {!! Form::select('dedicacion', $dedicaciones , null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Dedicacion']) !!}
+</div>
+
 <!-- Referenciageneral Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('referenciaGeneral', 'REFERENCIA GENERAL') !!}
@@ -59,25 +66,6 @@
     {!! Form::text('expediente', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Fechasustanciacion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fechaSustanciacion', 'FECHA DE SUSTANCIACION') !!}
-    {!! Form::date('fechaSustanciacion', null, ['class' => 'form-control']) !!}
-
-</div>
-
-<!-- Usuariosustanciacion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('usuarioSustanciacion', 'USUARIOS SUSTANCIACION') !!}
-    {!! Form::select('usuarioSustanciacion', $usuarios , null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Usuario']) !!}
-</div>
-
-<!-- Usuariocierre Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('usuarioCierre', 'USUARIO CIERRE') !!}
-    {!! Form::select('usuarioCierre',$usuarios , null, ['class' => 'form-control', 'placeholder' => 'Seleccione Usuario']) !!}
-</div>
-
 <!-- Observaciones Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('observaciones', 'OBSERVACIONES') !!}
@@ -100,24 +88,11 @@
     {!! Form::date('fechaFin', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Estado Field -->
+<!-- Fechafin Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('estado', 'ESTADO') !!}
-       <span class="text-danger"> (*)  </span>
-    {!! Form::select('estado', $estado , null, ['class' => 'form-control' , 'placeholder'=>'Seleccione Estado del Concurso']) !!}
-</div>
-
-<!-- Dedicacion Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('dedicacion', 'DEDICACION') !!}
-     <span class="text-danger"> (*)  </span>
-    {!! Form::select('dedicacion', $dedicaciones , null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Dedicacion']) !!}
-</div>
-
-<!-- Dictamen Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('dictamen', 'DICTAMEN') !!}
-    {!! Form::text('dictamen', null, ['class' => 'form-control']) !!}
+    {!! Form::label('fechaSustanciacion', 'FECHA DE SUSTANCIACION') !!}
+       <span class="text-danger"></span>
+    {!! Form::date('fechaSustanciacion', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

@@ -209,8 +209,8 @@
 
            $('#boton-consejos').click(function(){
   				introJs().showHints();
-    	   });
-
+         });
+         
            $('#boton-ayuda').click(function(){
 
             	introJs().setOptions({
@@ -232,6 +232,7 @@
 <!-- scripts para ajax de concursos y requisitos -->
 <script>
   $('#concursosAjaxSelect').on('change',function(e){
+    $('#requisitositemsList').empty();
       var concursoid = e.target.value;
       $("#ajax_loader").show();
       $.get('/ajax-concursos?concursoid='+concursoid, function(data){
@@ -262,7 +263,7 @@ function loadRequisitosItems()
       $.get('/ajax-requisitos?requisitoid='+$('#requisitosAjaxSelect').val(), function(data){
           $('#requisitositemsList').empty();
           $.each(data, function(index, reqItemsObject){
-            $('#requisitositemsList').append('<li><label><input value="'+reqItemsObject.id+'" type="checkbox"><span>'+reqItemsObject.descripcion+'</span></label></li>');
+            $('#requisitositemsList').append('<li><input id="'+reqItemsObject.descripcion+'" name="requisitositems[]" value="'+reqItemsObject.id+'" type="checkbox"></input><label for="' +reqItemsObject.descripcion+'"><span>'+reqItemsObject.descripcion+'</span></label></li>');
           });
 
           if (($("#ajax_loader").is(':visible'))) $("#ajax_loader").hide();

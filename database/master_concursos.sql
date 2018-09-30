@@ -195,7 +195,7 @@ CREATE TABLE `concursos` (
   `observaciones` varchar(200) DEFAULT NULL,
   `fechaInicio` datetime NOT NULL COMMENT 'Fecha de inicio de inscripciones al concurso\n',
   `fechaFin` datetime NOT NULL COMMENT 'Fecha final de inscipciones al concurso',
-  `estado` enum('Abierto','Cerrado','Impugnado','Vacante') NOT NULL COMMENT '1: ABIERTO\n2: CERRADO\n3: IMPUGNADO\n4: VACANTE',
+  `estado` enum('Pendiente','Cerrado','Impugnado','Vacante','Nulo','DesiertoConvocatoria','DesiertoSustanciacion') NOT NULL COMMENT '1: PENDIENTE\n2: CERRADO\n3: IMPUGNADO\n4: VACANTE\n5: NULO\n6: DESIERTO DESDE CONVOCATORIA\n7: DESIERTO DESDE SUSTANCIACION',
   `dedicacion` enum('Simple','Exclusiva','Semiexclusiva') NOT NULL COMMENT '1 = SIMPLE\n2 = EXCLUSIVA\n3 = SEMIEXCLUSIVA',
   `dictamen` mediumblob,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -221,7 +221,7 @@ CREATE TABLE `concursos` (
 
 LOCK TABLES `concursos` WRITE;
 /*!40000 ALTER TABLE `concursos` DISABLE KEYS */;
-INSERT INTO `concursos` VALUES (1,9,1,1,'VI-004','VI.01',2,'Comunicación y educación','LOS QUE CORRESPONDAN A LA CATEGORÍA Y PERFIL SEGÚN RESOLUCIÓN (R) Nº 113/15','60/18','2019-05-16 00:00:00',5,4,'Sin Observaciones','2018-07-03 00:00:00','2019-07-03 00:00:00','Abierto','Simple',NULL,'2018-06-03 23:07:39','2018-06-03 23:07:39',NULL);
+INSERT INTO `concursos` VALUES (1,9,1,1,'VI-004','VI.01',2,'Comunicación y educación','LOS QUE CORRESPONDAN A LA CATEGORÍA Y PERFIL SEGÚN RESOLUCIÓN (R) Nº 113/15','60/18','2019-05-16 00:00:00',5,4,'Sin Observaciones','2018-07-03 00:00:00','2019-07-03 00:00:00','Pendiente','Simple',NULL,'2018-06-03 23:07:39','2018-06-03 23:07:39',NULL);
 /*!40000 ALTER TABLE `concursos` ENABLE KEYS */;
 UNLOCK TABLES;
 

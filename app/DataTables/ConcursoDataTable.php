@@ -38,8 +38,7 @@ class ConcursoDataTable extends DataTable
                                                'concursos.id','concursos.fechaInicio as con_fi' ,
                                                'concursos.id','concursos.fechaFin as con_ff' ,
                                                'concursos.id','concursos.estado as con_est',
-                                               'concursos.id','concursos.dedicacion as con_ded' ,
-                                               'concursos.id','concursos.dictamen as con_dic'  );
+                                               'concursos.id','concursos.dedicacion as con_ded' );
 
         return $this->applyScopes($concursos);
     }
@@ -100,8 +99,7 @@ class ConcursoDataTable extends DataTable
             'Fecha Inicio' => ['name' => 'fechaInicio', 'data' => 'con_fi'],
             'Fecha Fin' => ['name' => 'fechaFin', 'data' => 'con_ff'],
             'Estado' => ['name' => 'estado', 'data' => 'con_est'],
-            'Dedicacion' => ['name' => 'dedicacion', 'data' => 'con_ded'],
-            'Dictamen' => ['name' => 'dictamen', 'data' => 'con_dic']
+            'Dedicacion' => ['name' => 'dedicacion', 'data' => 'con_ded']
         ];
     }
 

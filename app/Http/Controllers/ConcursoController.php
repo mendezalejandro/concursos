@@ -15,6 +15,7 @@ use App\Models\Categoria;
 use App\Models\Perfiles;
 use App\Models\User;
 use App\Models\Concurso;
+use Auth;
 
 class ConcursoController extends AppBaseController
 {
@@ -48,7 +49,7 @@ class ConcursoController extends AppBaseController
       $categorias = Categoria::pluck('nombre', 'id');
       $perfiles = Perfiles::pluck('nombre', 'id');
       $usuarios = User::pluck('name' , 'id');
-      $estado = Collect(['Abierto' => 'Abierto' , 'Cerrado' => 'Cerrado' , 'Impugnado' => 'Impugnado' , 'Vacante' => 'Vacante']);
+      $estado = Collect(['Pendiente' => 'Pendiente' , 'Cerrado' => 'Cerrado' , 'Impugnado' => 'Impugnado' , 'Vacante' => 'Vacante', 'Nulo' => 'Nulo', 'DesiertoConvocatoria' => 'DesiertoConvocatoria', 'DesiertoSustanciacion' => 'DesiertoSustanciacion']);
       $dedicaciones = Collect(['Simple' => 'Simple' , 'Exclusiva' => 'Exclusiva' , 'Semiexclusiva' => 'Semiexclusiva']);
         return view('concursos.create',compact( 'asignaturas' , 'categorias' , 'perfiles' , 'usuarios' , 'estado' , 'dedicaciones'));
     }
@@ -63,8 +64,16 @@ class ConcursoController extends AppBaseController
     public function store(CreateConcursoRequest $request)
     {
         $input = $request->all();
+        $input["estado"] = "Pendiente";
+
+        if($input["fechaSustanciacion"] != null && $input["fechaSustanciacion"]!="")
+            {
+                $input["estado"] = "Cerrado";
+                $input["usuarioCierre"]= Auth::id();
+            }
 
         $concurso = $this->concursoRepository->create($input);
+        
 
         Flash::success('Concurso saved successfully.');
 
@@ -105,7 +114,7 @@ class ConcursoController extends AppBaseController
         $categorias = Categoria::pluck('nombre', 'id');
         $perfiles = Perfiles::pluck('nombre', 'id');
         $usuarios = User::pluck('name' , 'id');
-        $estado = Collect(['Abierto' => 'Abierto' , 'Cerrado' => 'Cerrado' , 'Impugnado' => 'Impugnado' , 'Vacante' => 'Vacante']);
+        $estado = Collect(['Pendiente' => 'Pendiente' , 'Cerrado' => 'Cerrado' , 'Impugnado' => 'Impugnado' , 'Vacante' => 'Vacante', 'Nulo' => 'Nulo', 'DesiertoConvocatoria' => 'DesiertoConvocatoria', 'DesiertoSustanciacion' => 'DesiertoSustanciacion']);
         $dedicaciones = Collect(['Simple' => 'Simple' , 'Exclusiva' => 'Exclusiva' , 'Semiexclusiva' => 'Semiexclusiva']);
         $concurso = $this->concursoRepository->findWithoutFail($id);
 
@@ -137,7 +146,16 @@ class ConcursoController extends AppBaseController
             return redirect(route('concursos.index'));
         }
 
-        $concurso = $this->concursoRepository->update($request->all(), $id);
+        $input = $request->all();
+        $input["estado"] = "Pendiente";
+
+        if($input["fechaSustanciacion"] != null && $input["fechaSustanciacion"]!="")
+            {
+                $input["estado"] = "Cerrado";
+                $input["usuarioCierre"]= Auth::id();
+            }
+
+        $concurso = $this->concursoRepository->update($input, $id);
 
         Flash::success('Concurso updated successfully.');
 
@@ -172,8 +190,8 @@ class ConcursoController extends AppBaseController
 /*----------------Jorge Gamez------------------*/
     //cambia de estado a un concurso
 
-    public function abierto($id){
-	Concurso::where('id', $id)->update(['estado' => 'Abierto']);
+    public function pendiente($id){
+	Concurso::where('id', $id)->update(['estado' => 'Pendiente']);
 
     	return redirect(route('concursos.index'));}
 

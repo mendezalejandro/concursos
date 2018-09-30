@@ -27,6 +27,12 @@
     <p>{!! $concurso->categoria->nombre !!}</p>
 </div>
 
+<!-- Dedicacion Field -->
+<div class="form-group">
+    {!! Form::label('dedicacion', 'Dedicacion:') !!}
+    <p>{!! $concurso->dedicacion !!}</p>
+</div>
+
 <!-- Referenciageneral Field -->
 <div class="form-group">
     {!! Form::label('referenciaGeneral', 'Referenciageneral:') !!}
@@ -63,26 +69,6 @@
     <p>{!! $concurso->expediente !!}</p>
 </div>
 
-<!-- Fechasustanciacion Field -->
-<div class="form-group">
-    {!! Form::label('fechaSustanciacion', 'Fechasustanciacion:') !!}
-    <p>{!! $concurso->fechaSustanciacion !!}</p>
-    </div>
-
-<!-- Usuariosustanciacion Field -->
-<div class="form-group">
-    {!! Form::label('usuarioSustanciacion', 'Usuariosustanciacion:') !!}
-    <p>{!! $concurso->userSus->name !!}</p>
-    <a href="{{ action('UserController@show', $concurso->userSus->id ) }}"><p> {!! Form::button('Ver Más!')!!}</a>
-</div>
-
-<!-- Usuariocierre Field -->
-<div class="form-group">
-    {!! Form::label('usuarioCierre', 'Usuariocierre:') !!}
-    <p>{!! $concurso->userCie->name !!}</p>
-    <a href="{{ action('UserController@show', $concurso->userCie->id ) }}"><p> {!! Form::button('Ver Más!')!!}</a>
-</div>
-
 <!-- Observaciones Field -->
 <div class="form-group">
     {!! Form::label('observaciones', 'Observaciones:') !!}
@@ -101,20 +87,14 @@
     <p>{!! $concurso->fechaFin !!}</p>
 </div>
 
-<!-- Estado Field -->
+<!-- FechaCierre Field -->
 <div class="form-group">
-    {!! Form::label('estado', 'Estado:') !!}
-    <p>{!! $concurso->estado !!}</p>
+    {!! Form::label('fechaCierre', 'Fecha de cierre:') !!}
+    <p>{!! $concurso->fechaCierre!!}</p>
 </div>
 
-<!-- Dedicacion Field -->
+<!-- UsuarioCierre Field -->
 <div class="form-group">
-    {!! Form::label('dedicacion', 'Dedicacion:') !!}
-    <p>{!! $concurso->dedicacion !!}</p>
-</div>
-
-<!-- Dictamen Field -->
-<div class="form-group">
-    {!! Form::label('dictamen', 'Dictamen:') !!}
-    <p>{!! $concurso->dictamen !!}</p>
+    {!! Form::label('usuarioCierre', 'Usuario de cierre:') !!}
+    <p>{!! $concurso->usuarioCierre!!}</p>
 </div>
