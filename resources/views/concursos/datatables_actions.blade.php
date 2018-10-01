@@ -21,6 +21,10 @@
 <a href="{{ url('/mail/send', $id) }}" data-toggle="tooltip" title ="mail" class='btn btn-default btn-xs'>
   <i class="glyphicon glyphicon-send"></i>
 </a>
+<a id="sustanciarModal" data-toggle="tooltip" title ="sustanciar" class='btn btn-default btn-xs' data-toggle="modal"  data-id="{{ $id  }}" data-post="data-php" data-action="sustanciar">
+  <i class="glyphicon glyphicon-record"></i>
+</a>
+
 <!--cambia de estado a un concurso-->
 <button type="button" class="btn btn-success btn-xs dropdown-toggle"
  data-toggle="dropdown">Cambiar Estado<span class="caret"></span></button>
@@ -34,3 +38,18 @@
 </div>
 
 {!! Form::close() !!}
+
+<script>
+    $('#sustanciarModal').on('click', function(){
+        var this_id = $(this).attr('data-id');
+            $.get( "/showSustanciar/" + this_id, function( data ) {
+                $('#myModal').modal();
+                $('#myModal').on('shown.bs.modal', function(){
+                    $('#myModal .load_modal').html(data);
+                });
+                $('#myModal').on('hidden.bs.modal', function(){
+                    $('#myModal .modal-body').data('');
+                });
+            });
+    });
+</script>

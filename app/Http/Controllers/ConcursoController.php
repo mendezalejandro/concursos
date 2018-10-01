@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\DataTables\ConcursoDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateConcursoRequest;
 use App\Http\Requests\UpdateConcursoRequest;
+use App\Http\Requests\SustanciarConcursoRequest;
 use App\Repositories\ConcursoRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
@@ -16,7 +17,7 @@ use App\Models\Perfiles;
 use App\Models\User;
 use App\Models\Concurso;
 use Auth;
-
+use View;
 class ConcursoController extends AppBaseController
 {
     /** @var  ConcursoRepository */
@@ -186,7 +187,30 @@ class ConcursoController extends AppBaseController
         return redirect(route('concursos.index'));
     }
 
+      /**
+     * Muestra un formulario para cargar un dictamen.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showSustanciar($id)
+    {
+        $concurso = $this->concursoRepository->findWithoutFail($id);
+        return view('concursos.sustanciar')->with('concurso', $concurso);
+    }
+    /**
+     * Actualiza la informacion del concurso.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sustanciar($id,Request $request)
+    {
+        $input = $request->all();
+        $filePath = $input["file"];
+        Concurso::where('id', $id)->update(['Estado' => "Sustanciado",'Dictamen' => $filePath]);
 
+        Flash::success('El concurso se ha sustanciado.');
+        return redirect(route('concursos.index'));
+    }
 /*----------------Jorge Gamez------------------*/
     //cambia de estado a un concurso
 

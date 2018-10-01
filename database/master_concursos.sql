@@ -195,7 +195,7 @@ CREATE TABLE `concursos` (
   `observaciones` varchar(200) DEFAULT NULL,
   `fechaInicio` datetime NOT NULL COMMENT 'Fecha de inicio de inscripciones al concurso\n',
   `fechaFin` datetime NOT NULL COMMENT 'Fecha final de inscipciones al concurso',
-  `estado` enum('Pendiente','Cerrado','Impugnado','Vacante','Nulo','DesiertoConvocatoria','DesiertoSustanciacion') NOT NULL COMMENT '1: PENDIENTE\n2: CERRADO\n3: IMPUGNADO\n4: VACANTE\n5: NULO\n6: DESIERTO DESDE CONVOCATORIA\n7: DESIERTO DESDE SUSTANCIACION',
+  `estado` enum('Pendiente','Cerrado','Impugnado','Vacante','Nulo','DesiertoConvocatoria','DesiertoSustanciacion','Sustanciado') NOT NULL COMMENT '1: PENDIENTE\n2: CERRADO\n3: IMPUGNADO\n4: VACANTE\n5: NULO\n6: DESIERTO DESDE CONVOCATORIA\n7: DESIERTO DESDE SUSTANCIACION\n8: SUSTANCIADO',
   `dedicacion` enum('Simple','Exclusiva','Semiexclusiva') NOT NULL COMMENT '1 = SIMPLE\n2 = EXCLUSIVA\n3 = SEMIEXCLUSIVA',
   `dictamen` mediumblob,
   `created_at` timestamp NULL DEFAULT NULL,

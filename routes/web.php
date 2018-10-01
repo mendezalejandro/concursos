@@ -29,9 +29,14 @@ Route::get('/pendiente/{id}','ConcursoController@pendiente');
 Route::get('/cerrado/{id}','ConcursoController@cerrado');
 Route::get('/impugnado/{id}','ConcursoController@impugnado');
 Route::get('/vacante/{id}','ConcursoController@vacante');
+
 // Email related routes
 Route::get('mail/send/{id}', 'MailController@send');
 /*----------------------------------------------------*/
+
+//cambiar estados
+Route::get('/showSustanciar/{id}','ConcursoController@showSustanciar');
+Route::any('/sustanciar/{id}','ConcursoController@sustanciar')->name('concursos.sustanciar');;
 
 Route::get('/ajax-concursos', function(){
   $concursoid = Input::get('concursoid');
@@ -118,7 +123,7 @@ Route::middleware(['Miembro'])->group(function () {
 
   Route::resource('categorias', 'CategoriaController', ['except' => ['edit', 'create', 'store', 'update', 'destroy'] ]);
 
-  Route::resource('concursos', 'ConcursoController', ['except' => ['edit', 'create', 'store', 'update', 'destroy'] ]);
+  Route::resource('concursos', 'ConcursoController', ['except' => ['edit', 'create', 'store', 'update', 'destroy', 'sustanciar'] ]);
 
   Route::resource('concursoJurados', 'ConcursoJuradoController', ['except' => ['edit', 'create', 'store', 'update', 'destroy'] ]);
 
