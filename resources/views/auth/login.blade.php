@@ -29,6 +29,21 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+    
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
     <style>
         html, body {
             background-image: url('{{ asset('imagenes/fondo_pizarra.jpg')}}');
@@ -40,7 +55,6 @@
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-
             position: fixed;
             top: 0;
             left: 0;
@@ -48,79 +62,70 @@
             min-width: 100%;
             min-height: 100%;
           }
+          #box-login{
+            border-radius: 10px;
+            height: 100%; margin: 0px 0px 0px 0px;  width: 100%; flex-direction: column; display: block;   place-content: center; align-items: center;
+          }
 </style>
 </head>
-<body class="container-fluid">
-<div class="login-box">
-    <div class="login-logo">
-        <a href="{{ url('/home') }}" style = "color:#fffdfd"><b>Concursos Docentes </b>UNAJ</a>
-    </div>
-
-    <!-- /.login-logo -->
-    <div class="login-box-body ">
-        <p class="login-box-msg">Login</p>
-
-        <form method="post" action="{{ url('/login') }}">
-            {!! csrf_field() !!}
-
-            <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}" OnHover="play(this,'hoveraudio')">
-                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                @if ($errors->has('email'))
-                    <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-                @endif
-            </div>
-
-            <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}" OnHover="play(this,'hoveraudio')">
-                <input type="password" class="form-control" placeholder="Password" name="password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                @if ($errors->has('password'))
-                    <span class="help-block">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
-                @endif
-
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox" name="remember"> Recuerdame
-                        </label>
+<body>
+    <div class="login-box" >
+        <div class="login-logo" style = " margin: 0px 0px 0px 0px;">
+            <a href="{{ url('/home') }}" style = "color:#fffdfd"><b>Concurso Docentes UNAJ</b></a>
+        </div>
+    
+        <!-- /.login-logo -->
+        <div class="login-box-body" id="box-login" >
+            <p class="login-box-msg" >Login</p>
+    
+            <form method="post" action="{{ url('/login') }}">
+                {!! csrf_field() !!}
+    
+                <div class=".col-12 .col-sm-6 .col-lg-12 form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}" OnHover="play(this,'hoveraudio')" >
+                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email" autofocus>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    @if ($errors->has('email'))
+                        <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                    @endif
+                </div>
+    
+                <div class=".col-12 .col-sm-6 .col-lg-12 form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}" OnHover="play(this,'hoveraudio')">
+                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                    @endif
+    
+                </div>
+                
+                    <div class=".col-12 .col-sm-6 .col-lg-8">
+                        <div class="checkbox icheck">
+                            <label>
+                                <input type="checkbox" name="remember"> Recordarme
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                	<div class=".col-6 .col-sm-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+            </form>
+            <br>
+    			<div class="row " style=" height: 100%; margin: 0px; min-height: 100%; min-width: 100%; width: 100%; flex-direction: column; box-sizing: border-box; display: flex; max-width: 100%;place-content: center; align-items: center;" >
+            		<div class=".col-12 .col-sm-6 .col-lg-12">
+                	    <a href="{{ url('/password/reset') }}">&iquest;Has olvidado tu Contrase&ntilde;a?</a><br>
+                    </div>
+                    <div class=".col-12 .col-sm-6 .col-lg-12">
+                	    <a href="{{ url('/register') }}" class="text-center"><b>Registrarse</b></a>
                     </div>
                 </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-                </div>
-                <!-- /.col -->
-            </div>
-        </form>
-
-        <a href="{{ url('/password/reset') }}">Olvido su Contraseña?</a><br>
-        <a href="{{ url('/register') }}" class="text-center">Registrese Como  Miembro</a>
-
-    </div>
-    <!-- /.login-box-body -->
-</div>
-<!-- /.login-box -->
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
-
-<!-- AdminLTE App -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
-<script>
-    $(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' // optional
-        });
-    });
-</script>
+                
+        </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
 </body>
 </html>
