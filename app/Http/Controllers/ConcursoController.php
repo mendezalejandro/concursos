@@ -74,7 +74,7 @@ class ConcursoController extends AppBaseController
             }
 
         $concurso = $this->concursoRepository->create($input);
-        
+
 
         Flash::success('Concurso saved successfully.');
 

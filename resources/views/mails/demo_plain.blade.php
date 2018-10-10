@@ -1,15 +1,17 @@
-Hello {{ $demo->receiver }},
-This is a demo email for testing purposes! Also, it's the HTML version.
+Hello {{ $postulante_nombre }},
+demo_plain.blade.php
+
+
 
 Demo object values:
 
-Demo One: {{ $demo->demo_one }}
-Demo Two: {{ $demo->demo_two }}
+Demo One: {{ $referenciaGeneral }}
+Demo Two: {{ $fechaSustanciacion }}
 
 Values passed by With method:
 
-testVarOne: {{ $testVarOne }}
-testVarOne: {{ $testVarOne }}
+testVarOne: {{ $estado }}
+testVarOne: {{ $usuarioSustanciacion }}
 
 Thank You,
-{{ $demo->sender }}
+{{ $usuarioSustanciacion }}

@@ -11,11 +11,27 @@ use Auth;
 class DemoEmail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $demo;
-    public function __construct($demo)
+    public $referenciaGeneral;
+    public $fechaSustanciacion;
+    public $estado ;
+    public $usuarioSustanciacion;
+    public $postulante_nombre;
+    public $postulante_ape;
+
+
+    public function __construct($referenciaGeneral , $fechaSustanciacion , $estado , $usuarioSustanciacion , $postulante_nombre , $postulante_ape)
     {
-        $this->demo = $demo;
+
+        $this->referenciaGeneral = $referenciaGeneral;
+        $this->fechaSustanciacion = $fechaSustanciacion;
+        $this->estado = $estado ;
+        $this->usuarioSustanciacion =$usuarioSustanciacion;
+        $this->postulante_nombre;
+        $this->postulante_ape;
         //$this->middleware('auth');
+
+
+
     }
     public function build()
     {
@@ -24,12 +40,14 @@ class DemoEmail extends Mailable
                     ->text('mails.demo_plain')
                     ->with(
                       [
-                            'testVarOne' => '1',
-                            'testVarTwo' => '2',
-                      ])
-                      ->attach(public_path('/imagenes').'/fondo_pizarra.jpg', [
-                              'as' => 'demo.jpg',
-                              'mime' => 'image/jpeg',
+                            'referenciaGeneral' => $this->referenciaGeneral,
+                            'fechaSustanciacion' => $this->fechaSustanciacion,
+                            'estado' => $this->estado ,
+                            'usuarioSustanciacion' => $this->usuarioSustanciacion,
+                            'postulante_nombre' => $this->postulante_nombre,
+                            'postulante_ape' => $this->postulante_ape,
+
                       ]);
+
     }
 }
