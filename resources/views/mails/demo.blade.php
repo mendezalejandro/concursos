@@ -20,4 +20,4 @@ Atte .Concursos Docentes
 <br/>
 Universidad Nacional Arturo Jauretche
 <br/>
-<i>{{ $usuarioSustanciacion }}</i>
+<!--i>{{ $usuarioSustanciacion }}</i-->
