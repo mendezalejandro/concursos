@@ -1,15 +1,15 @@
+<!-- Referenciainstituto Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('referenciaInstituto', 'REFERENCIA INSTITUTO') !!}
+    <span class="text-danger"> (*)  </span>
+    {!! Form::text('referenciaInstituto', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Asignatura Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('asignatura_id', 'ASIGNATURA') !!}
        <span class="text-danger"> (*)  </span>
     {!! Form::select ('asignatura_id', $asignaturas, null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Asignatura']) !!}
-</div>
-
-<!-- Perfil Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('perfil_id', 'PERFIL') !!}
-       <span class="text-danger"> (*)  </span>
-    {!! Form::select('perfil_id', $perfiles , null, ['class' => 'form-control', 'placeholder' => 'Seleccione Perfil']) !!}
 </div>
 
 <!-- Categoria Id Field -->
@@ -26,18 +26,18 @@
     {!! Form::select('dedicacion', $dedicaciones , null, ['class' => 'form-control' , 'placeholder' => 'Seleccione Dedicacion']) !!}
 </div>
 
+<!-- Perfil Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('perfil_id', 'PERFIL') !!}
+       <span class="text-danger"> (*)  </span>
+    {!! Form::select('perfil_id', $perfiles , null, ['class' => 'form-control', 'placeholder' => 'Seleccione Perfil']) !!}
+</div>
+
 <!-- Referenciageneral Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('referenciaGeneral', 'REFERENCIA GENERAL') !!}
        <span class="text-danger"> (*)  </span>
     {!! Form::text('referenciaGeneral', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Referenciainstituto Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('referenciaInstituto', 'REFERENCIA INSTITUTO') !!}
-    <span class="text-danger"> (*)  </span>
-    {!! Form::text('referenciaInstituto', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Cargos Field -->
