@@ -23,6 +23,10 @@ Route::get('/reportes', function () {
   return view('reportes.reportes');
 });
 
+Route::get('profile', 'UserController@profile');
+
+Route::post('profile' , 'UserController@updatePhoto');
+
 /*----------------Jorge Gamez------------------*/
 //cambia de estado a un concurso
 Route::get('/pendiente/{id}','ConcursoController@pendiente');
