@@ -16,8 +16,10 @@ use App\Models\Categoria;
 use App\Models\Perfiles;
 use App\Models\User;
 use App\Models\Concurso;
+use App\Models\ConcursoPostulante;
 use Auth;
 use View;
+use DB;
 class ConcursoController extends AppBaseController
 {
     /** @var  ConcursoRepository */
@@ -204,11 +206,26 @@ class ConcursoController extends AppBaseController
      */
     public function sustanciar($id,Request $request)
     {
-        $input = $request->all();
-        $filePath = $input["file"];
-        Concurso::where('id', $id)->update(['Estado' => "Sustanciado",'Dictamen' => $filePath]);
+        DB::beginTransaction();
+        try{
+            $input = $request->all();
+            $filePath = $input["file"];
 
-        Flash::success('El concurso se ha sustanciado.');
+            Concurso::where('id', $id)->update(['usuarioSustanciacion'=>Auth::id(),'Estado' => "Sustanciado",'Dictamen' => $filePath]);
+            //asocio todos los items requeridos para el puesto
+            foreach ($input["ordenesMerito"] as $orden) {
+                ConcursoPostulante::where([['postulante_id', '=', (int)$orden["postulanteid"]],['concurso_id', '=', $id]])->update(['ordenMerito' => (int)$orden["ordennumero"]]);
+            }
+
+            DB::commit();
+            Flash::success('El concurso se ha sustanciado.');
+            
+        }
+        catch(\Exception $e)
+        {
+            DB::rollBack();
+            Flash::error("Se produjo un error al intentar guardar la informacion. \nError: ".$e->getMessage());
+        }
         return redirect(route('concursos.index'));
     }
 /*----------------Jorge Gamez------------------*/
