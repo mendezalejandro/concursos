@@ -128,6 +128,20 @@
       <a href="{!! route('universidads.index') !!}"><i class="fa fa-university text-light-blue"></i><span>Universidades</span></a>
   </li>
 
+  <!---------------------------------------------------------------------------------------------------------------------->
+  <li class="treeview" data-intro='Función netamente administrativa, podra gestionar todos los usuarios del sistema.'>
+    <a href="#">
+    <i class="fa fa-list text-red " ></i> <span>Reportes</span>
+      <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+    </a>
+    <ul class="treeview-menu">
+      <li class="{{ Request::is('reportes*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
+          <a href="{!! route('reportes.index') !!}"><i class="fa fa-tree text-red"></i><span>Reportes</span></a>
+      </li>
+
+    </ul>
+  </li>
+
 </ul>
 </li>
 <!---------------------------------------------------------------------------------------------------------------------->

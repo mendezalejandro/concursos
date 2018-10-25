@@ -1,9 +1,12 @@
-@section('reportes')
+@extends('layouts.app')
+
+@section('content')
 
 
+@php
+/*dd($AspirantesporConcurso);*/ 
+dd($JuradosporConcurso);
+@endphp
 
-<!--=====================================
-CAJAS SUPERIORES
-======================================-->
 
 @endsection

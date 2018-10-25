@@ -19,15 +19,17 @@ Route::get('errors/404', function(){
   return view('errors.404');
   //abort(404);
 });
-Route::get('/reportes', function () {
-  return view('reportes.reportes');
-});
+Route::resource('/reportes', 'ReporteController');
 
 Route::get('profile', 'UserController@profile');
 
 Route::post('profile' , 'UserController@updatePhoto');
 
 /*----------------Jorge Gamez------------------*/
+
+
+
+
 //cambia de estado a un concurso
 Route::get('/pendiente/{id}','ConcursoController@pendiente');
 Route::get('/cerrado/{id}','ConcursoController@cerrado');

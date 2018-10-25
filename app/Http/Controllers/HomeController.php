@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Concurso;
+
+
 class HomeController extends Controller
 {
     public function __construct()
@@ -21,5 +23,8 @@ class HomeController extends Controller
     {
         $data = Concurso::select('concursos.referenciaGeneral' ,'concursos.cargos' )->get();
         return view('home', ['data'=>$data]);
+
     }
+
+
 }
