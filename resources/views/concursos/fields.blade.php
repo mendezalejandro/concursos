@@ -77,7 +77,7 @@
 
     {!! Form::label('fechaInicio', 'FECHA DE INICIO') !!}
        <span class="text-danger"> (*)  </span>
-    {!! Form::date('fechaInicio', $concurso->fechaInicio->format('Y-m-d'), ['class' => 'form-control']) !!}
+    {!! Form::date('fechaInicio', null, ['class' => 'form-control']) !!}
 
 </div>
 
@@ -85,14 +85,14 @@
 <div class="form-group col-sm-6">
     {!! Form::label('fechaFin', 'FECHA DE FIN') !!}
        <span class="text-danger"> (*)  </span>
-    {!! Form::date('fechaFin', $concurso->fechaFin->format('Y-m-d'), ['class' => 'form-control']) !!}
+    {!! Form::date('fechaFin', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Fechafin Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('fechaSustanciacion', 'FECHA DE SUSTANCIACION') !!}
        <span class="text-danger"></span>
-    {!! Form::date('fechaSustanciacion', $concurso->fechaSustanciacion->format('Y-m-d'), ['class' => 'form-control']) !!}
+    {!! Form::date('fechaSustanciacion', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
