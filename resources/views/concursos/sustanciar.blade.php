@@ -58,8 +58,11 @@
                     dataType: 'JSON',
                     /* remind that 'data' is the response of the AjaxController */
                     success: function (data) { 
-                        $('#myModal').hide();
+                        $('#myModal').modal('hide');
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
                         localStorage.removeItem("base64file");
+                        window.location = "/concursos";
                     },
                     error: function (data) { 
                         alert("error");

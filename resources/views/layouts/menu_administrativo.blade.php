@@ -19,9 +19,6 @@
         <li class="{{ Request::is('ConcursoJurado*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
           <a href="{!! route('concursoJurados.index') !!}"><i class="glyphicon glyphicon-transfer text-light-blue" ></i><span>Asignar Jurados</span></a>
         </li>
-        <li class="{{ Request::is('ConcursoPostulante*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
-          <a href="{!! route('concursoPostulantes.index') !!}"><i class="glyphicon glyphicon-transfer text-light-blue" ></i><span>Asignar Postulantes</span></a>
-        </li>
         <li class="{{ Request::is('CargoConcursado*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
             <a href="{!! route('cargoConcursados.index') !!}"><i class="fa fa-contao text-light-blue"></i><span>Cargos Concursados</span></a>
         </li>

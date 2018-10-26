@@ -25,11 +25,16 @@
     </section>
     <div class="box box-primary">
         <div class="box-body">
-            @foreach($concurso->postulantes as $postulante) 
-            <div class="row">
-                <p> {{ $postulante->nombres ." ". $postulante->apellidos }} </p>
-            </div>
+            <table border="1" style="width:100%">
+            @foreach($ordenes as $orden) 
+            <tr>
+                <td>
+                    <p> {{ $orden->postulante->nombres ." ". $orden->postulante->apellidos }} </p>
+                </td>
+                <td>Orden: {{ $orden->ordenMerito}}</td>
+            </tr>
             @endforeach
+            </table>
         </div>
     </div>
 
