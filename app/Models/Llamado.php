@@ -42,7 +42,7 @@ class Llamado extends Model
      * @var array
      */
     public static $rules = [
-      'codigo' => 'required',
+      'codigo' => 'required|alpha_dash',
       'año' => 'required',
       'fechaInicio'=> 'required',
       'fechaFin' => 'required'
