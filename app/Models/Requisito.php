@@ -47,6 +47,7 @@ class Requisito extends Model
       'categoria_id' => 'required',
       'perfil_id' => 'required',
       'dedicacion' => 'required',
+        'dedicacion' => 'string|max:50|alpha_dash',
     ];
 
     /**
