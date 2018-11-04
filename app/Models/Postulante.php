@@ -5,8 +5,8 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Postulante extends Model
-{
+class Postulante extends Model {
+
     use SoftDeletes;
 
     public $table = 'personas';
@@ -14,10 +14,7 @@ class Postulante extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
     public $fillable = [
         'nombres',
         'apellidos',
@@ -51,25 +48,27 @@ class Postulante extends Model
      * @var array
      */
     public static $rules = [
-      'nombres' => 'required',
-      'apellidos' => 'required',
-      'documento' => 'required',
-      'email' => 'required',
+        'nombres' => 'required|max:60|alpha',
+        'apellidos' => 'required|max:60|alpha',
+        'documento' => 'required|max:99999999|numeric',
+        'email' => 'required|max:60',
+        'telefono' => 'max:13|numeric',
+        'celular' => 'max:13|numeric',
+        'direccion' => 'alpha_dash|max:70',
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function concursos()
-    {
+     * */
+    public function concursos() {
         return $this->belongsToMany(\App\Models\Concurso::class, 'concursospostulantes');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function requisitositems()
-    {
+     * */
+    public function requisitositems() {
         return $this->belongsToMany(\App\Models\Requisitositem::class, 'requisitospostulantes');
     }
+
 }

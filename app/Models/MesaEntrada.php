@@ -50,11 +50,14 @@ class MesaEntrada extends Model
      *
      * @var array
      */
-    public static $rules = [
-      'nombres' => 'required',
-      'apellidos' => 'required',
-      'documento' => 'required',
-      'email' => 'required',
+     public static $rules = [
+      'nombres' => 'required|max:60|alpha',
+      'apellidos' => 'required|max:60|alpha',
+      'documento' => 'required|max:10|numeric',
+      'email' => 'required|max:60',
+      'telefono' => 'max:13|numeric',
+      'celular' => 'max:13|numeric',
+      'direccion' => 'alpha_dash|max:70',
     ];
 
     /**

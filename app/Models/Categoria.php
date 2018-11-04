@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Models;
@@ -41,8 +42,8 @@ class Categoria extends Model
      * @var array
      */
     public static $rules = [
-      'nombre' => 'required',
-      'nivel' => 'required'
+      'nombre' => 'required|max:60|alpha',
+      'nivel' => 'required|max:2|numeric'
     ];
 
     /**
