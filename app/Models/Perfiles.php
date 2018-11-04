@@ -38,7 +38,7 @@ class Perfiles extends Model
      * @var array
      */
     public static $rules = [
-        'nombre' => 'required'
+        'nombre' => 'required|alpha|max:30'
     ];
 
     /**

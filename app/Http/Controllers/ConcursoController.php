@@ -16,8 +16,10 @@ use App\Models\Categoria;
 use App\Models\Perfiles;
 use App\Models\User;
 use App\Models\Concurso;
+use App\Models\ConcursoPostulante;
 use Auth;
 use View;
+use DB;
 class ConcursoController extends AppBaseController
 {
     /** @var  ConcursoRepository */
@@ -150,12 +152,6 @@ class ConcursoController extends AppBaseController
         $input = $request->all();
         $input["estado"] = "Pendiente";
 
-        if($input["fechaSustanciacion"] != null && $input["fechaSustanciacion"]!="")
-            {
-                $input["estado"] = "Cerrado";
-                $input["usuarioCierre"]= Auth::id();
-            }
-
         $concurso = $this->concursoRepository->update($input, $id);
 
         Flash::success('Concurso updated successfully.');
@@ -195,7 +191,18 @@ class ConcursoController extends AppBaseController
     public function showSustanciar($id)
     {
         $concurso = $this->concursoRepository->findWithoutFail($id);
-        return view('concursos.sustanciar')->with('concurso', $concurso);
+        $ordenes = ConcursoPostulante::where([['concurso_id','=',$id]])->get();
+        return view('concursos.sustanciar')->with('concurso', $concurso)->with('ordenes',$ordenes);
+    }
+        /**
+     * Muestra un formulario para cerrar un concurso.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showCerrar($id)
+    {
+        $concurso = $this->concursoRepository->findWithoutFail($id);
+        return view('concursos.cerrar')->with('concurso', $concurso);
     }
     /**
      * Actualiza la informacion del concurso.
@@ -204,11 +211,50 @@ class ConcursoController extends AppBaseController
      */
     public function sustanciar($id,Request $request)
     {
-        $input = $request->all();
-        $filePath = $input["file"];
-        Concurso::where('id', $id)->update(['Estado' => "Sustanciado",'Dictamen' => $filePath]);
+        DB::beginTransaction();
+        try{
+            $input = $request->all();
+            $filePath = $input["file"];
 
-        Flash::success('El concurso se ha sustanciado.');
+            Concurso::where('id', $id)->update(['usuarioSustanciacion'=>Auth::id(),'Estado' => "Sustanciado",'Dictamen' => $filePath]);
+            //asocio todos los items requeridos para el puesto
+            foreach ($input["ordenesMerito"] as $orden) {
+                ConcursoPostulante::where([['postulante_id', '=', (int)$orden["postulanteid"]],['concurso_id', '=', $id]])->update(['ordenMerito' => ($orden["ordennumero"] == null ? null : ((int)$orden["ordennumero"])+1)]);
+            }
+
+            DB::commit();
+            Flash::success('El concurso se ha sustanciado.');
+            
+        }
+        catch(\Exception $e)
+        {
+            DB::rollBack();
+            Flash::error("Se produjo un error al intentar guardar la informacion. \nError: ".$e->getMessage());
+        }
+        return redirect(route('concursos.index'));
+    }
+        /**
+     * Actualiza la informacion del concurso.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cerrar($id,Request $request)
+    {
+        DB::beginTransaction();
+        try{
+            $input = $request->all();
+            $fechaSustanciacion = $input["fechaSustanciacion"];
+
+            Concurso::where('id', $id)->update(['usuarioCierre'=>Auth::id(),'Estado' => "Cerrado",'FechaSustanciacion' => $fechaSustanciacion]);
+
+            DB::commit();
+            Flash::success('El concurso se ha cerrado.');
+        }
+        catch(\Exception $e)
+        {
+            DB::rollBack();
+            Flash::error("Se produjo un error al intentar guardar la informacion. \nError: ".$e->getMessage());
+        }
         return redirect(route('concursos.index'));
     }
 /*----------------Jorge Gamez------------------*/
@@ -216,11 +262,6 @@ class ConcursoController extends AppBaseController
 
     public function pendiente($id){
 	Concurso::where('id', $id)->update(['estado' => 'Pendiente']);
-
-    	return redirect(route('concursos.index'));}
-
-    public function cerrado($id){
-	Concurso::where('id', $id)->update(['estado' => 'Cerrado']);
 
     	return redirect(route('concursos.index'));}
 
@@ -234,6 +275,21 @@ class ConcursoController extends AppBaseController
 
 	return redirect(route('concursos.index'));}
 
+    public function nulo($id){
+        Concurso::where('id', $id)->update(['estado' => 'Nulo']);
+    
+        return redirect(route('concursos.index'));
+    }
+    public function desiertoconvocatoria($id){
+        Concurso::where('id', $id)->update(['estado' => 'DesiertoConvocatoria']);
+    
+        return redirect(route('concursos.index'));
+    }
+    public function desiertosustanciacion($id){
+        Concurso::where('id', $id)->update(['estado' => 'DesiertoSustanciacion']);
+    
+        return redirect(route('concursos.index'));}
+    
 /*----------------Jorge Gamez------------------*/
     //cambia de estado a un concurso
 }

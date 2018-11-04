@@ -7,15 +7,18 @@
         <div class="user-panel">
             <div class="pull-left image">
               @php
+
               if(empty(Auth::user()->image))
                 {
-                  $image = "http://digilander.libero.it/Ictszu/rev4.0/avatar.jpg";
+                  $image = url('/avatars/default.jpg');
                 }
               else
                 {
-                  $image = Auth::user()->image;
+                  $image =  url('/avatars/'.  Auth::user()->image);
+
                 }
               @endphp
+
                 <img src="{{$image}}" class="img-circle"
                      alt="User Image"/>
             </div>

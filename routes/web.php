@@ -19,16 +19,24 @@ Route::get('errors/404', function(){
   return view('errors.404');
   //abort(404);
 });
-Route::get('/reportes', function () {
-  return view('reportes.reportes');
-});
+Route::resource('/reportes', 'ReporteController');
+
+Route::get('profile', 'UserController@profile');
+
+Route::post('profile' , 'UserController@updatePhoto');
 
 /*----------------Jorge Gamez------------------*/
+
+
+
+
 //cambia de estado a un concurso
 Route::get('/pendiente/{id}','ConcursoController@pendiente');
-Route::get('/cerrado/{id}','ConcursoController@cerrado');
 Route::get('/impugnado/{id}','ConcursoController@impugnado');
 Route::get('/vacante/{id}','ConcursoController@vacante');
+Route::get('/nulo/{id}','ConcursoController@nulo');
+Route::get('/desiertoconvocatoria/{id}','ConcursoController@desiertoconvocatoria');
+Route::get('/desiertosustanciacion/{id}','ConcursoController@desiertosustanciacion');
 
 // Email related routes
 Route::get('mail/send/{id}', 'MailController@send');
@@ -37,6 +45,8 @@ Route::get('mail/send/{id}', 'MailController@send');
 //cambiar estados
 Route::get('/showSustanciar/{id}','ConcursoController@showSustanciar');
 Route::any('/sustanciar/{id}','ConcursoController@sustanciar')->name('concursos.sustanciar');;
+Route::get('/showCerrar/{id}','ConcursoController@showCerrar');
+Route::any('/cerrar/{id}','ConcursoController@cerrar')->name('concursos.cerrar');;
 
 Route::get('/ajax-concursos', function(){
   $concursoid = Input::get('concursoid');
