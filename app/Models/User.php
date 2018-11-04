@@ -35,7 +35,7 @@ class User extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
+        'name' => 'string|max:60|alpha',
         'email' => 'string',
         'password' => 'string',
         'remember_token' => 'string',
