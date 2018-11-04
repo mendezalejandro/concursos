@@ -50,7 +50,7 @@ class Postulante extends Model {
     public static $rules = [
         'nombres' => 'required|max:60|alpha',
         'apellidos' => 'required|max:60|alpha',
-        'documento' => 'required|max:10|numeric',
+        'documento' => 'required|max:99999999|numeric',
         'email' => 'required|max:60',
         'telefono' => 'max:13|numeric',
         'celular' => 'max:13|numeric',
