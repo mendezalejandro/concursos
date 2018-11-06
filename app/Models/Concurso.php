@@ -75,22 +75,22 @@ class Concurso extends Model
      * @var array
      */
     public static $rules = [
-      'referenciaInstituto' => 'required|max:10|alpha_dash',
+      'referenciaInstituto' => 'required|max:10',
       'asignatura_id' => 'required',
       'perfil_id' => 'required',
       'categoria_id' => 'required',
       'dedicacion' => 'required',
       'perfil_id' => 'required',
-      'referenciaGeneral' => 'required|string|alpha_dash|max:10',
+      'referenciaGeneral' => 'required|string|max:10',
       'cargos' => 'required',
       'cargos' => 'numeric|max:10',
       'fechaInicio' => 'required',
       'fechaFin' => 'required',
       'dedicacion' => 'required',
-      'lineaDesarrollo' => 'string|max:20|alpha_dash',
-      'requisitos' => 'string|max:20|alpha_dash',
-      'expediente' => 'string|max:20|alpha_dash',
-      'observaciones' => 'string|max:50|alpha_dash',
+      'lineaDesarrollo' => 'string',
+      'requisitos' => 'string',
+      'expediente' => 'string',
+      'observaciones' => 'string',
     ];
 
     /**
