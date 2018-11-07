@@ -59,7 +59,7 @@
   <div class="row">
     <div class="col-md-6">
       <!----------------------------------AREA CHART ---------------------------------->
-      <div class="box box-primary">
+      <div class="box box-primary collapsed-box">
                <div class="box-header with-border">
                  <h3 class="box-title">Area Chart</h3>
 
@@ -76,7 +76,7 @@
                <!-- /.box-body -->
              </div>
       <!---------------------------------- DONUT CHART ---------------------------------->
-      <div class="box box-danger">
+      <div class="box box-danger collapsed-box">
     <div class="box-header with-border">
      <h3 class="box-title">Donut Chart</h3>
      <div class="box-tools pull-right">
@@ -92,7 +92,7 @@
     </div>
     <div class="col-md-6">
       <!---------------------------------- LINE CHART ---------------------------------->
-      <div class="box box-info">
+      <div class="box box-info collapsed-box">
       <div class="box-header with-border">
        <h3 class="box-title">Line Chart</h3>
        <div class="box-tools pull-right">
@@ -108,7 +108,7 @@
       <!-- /.box-body -->
       </div>
       <!---------------------------------- BAR CHART ---------------------------------->
-      <div class="box box-success">
+      <div class="box box-success collapsed-box">
       <div class="box-header with-border">
        <h3 class="box-title">Bar Chart</h3>
        <div class="box-tools pull-right">

@@ -33,7 +33,7 @@ class Llamado extends Model
     protected $casts = [
         'id' => 'integer',
         'codigo' => 'string',
-        'año' => 'date'
+        'año' => 'string'
     ];
 
     /**
@@ -42,9 +42,9 @@ class Llamado extends Model
      * @var array
      */
     public static $rules = [
-      'codigo' => 'required|alpha_dash',
-      'año' => 'required|after',
-      'fechaInicio'=> 'required|after',
+      'codigo' => 'required',
+      'año' => 'required',
+      'fechaInicio'=> 'required',
       'fechaFin' => 'required'
     ];
 
