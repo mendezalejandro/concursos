@@ -25,6 +25,23 @@ Route::get('profile', 'UserController@profile');
 
 Route::post('profile' , 'UserController@updatePhoto');
 
+Route::resource('/reportes', 'ReporteController');
+
+Route::get('/verAspirantesporConcurso', 'ReporteController@verAspirantesporConcurso');
+Route::get('/pdfAspirantesporConcurso', 'ReporteController@pdfAspirantesporConcurso');
+Route::get('/verJuradosporConcurso', 'ReporteController@verJuradosporConcurso');
+Route::get('/pdfJuradosporConcurso', 'ReporteController@pdfJuradosporConcurso');
+Route::get('/verConcursospendientesdesustanciaciónporllamado', 'ReporteController@verConcursospendientesdesustanciaciónporllamado');
+Route::get('/pdfConcursospendientesdesustanciaciónporllamado', 'ReporteController@pdfConcursospendientesdesustanciaciónporllamado');
+Route::get('/verConcursosCerradosporllamado', 'ReporteController@verConcursosCerradosporllamado');
+Route::get('/pdfConcursosCerradosporllamado', 'ReporteController@pdfConcursosCerradosporllamado');
+Route::get('/verConcursosDesiertosdesdeConvocatoriaporllamado', 'ReporteController@verConcursosDesiertosdesdeConvocatoriaporllamado');
+Route::get('/pdfConcursosDesiertosdesdeConvocatoriaporllamado', 'ReporteController@pdfConcursosDesiertosdesdeConvocatoriaporllamado');
+Route::get('/verConcursosDesiertosenSustanciaciónporllamado', 'ReporteController@verConcursosDesiertosenSustanciaciónporllamado');
+Route::get('/pdfConcursosDesiertosenSustanciaciónporllamado', 'ReporteController@pdfConcursosDesiertosenSustanciaciónporllamado');
+Route::get('/verConcursosNulosporllamado', 'ReporteController@verConcursosNulosporllamado');
+Route::get('/pdfConcursosNulosporllamado', 'ReporteController@pdfConcursosNulosporllamado');
+
 /*----------------Jorge Gamez------------------*/
 
 
