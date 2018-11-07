@@ -55,7 +55,7 @@
 <script>
     $('button[name="sustanciarModal"]').on('click', function(){
         var this_id = $(this).attr('data-id');
-            $.get( "/showSustanciar/" + this_id, function( data ) {
+            $.get( "{{ url('/showSustanciar') }}/" + this_id, function( data ) {
                 $('#myModal').modal();
                 $('#myModal').on('shown.bs.modal', function(){
                     $('#myModal .load_modal').html(data);

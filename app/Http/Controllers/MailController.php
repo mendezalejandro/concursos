@@ -10,6 +10,7 @@ use App\Models\Postulante;
 use App\Models\Jurado;
 use App\Models\ConcursoPostulante;
 use App\Models\ConcursoJurado;
+use Flash;
 
 
 
