@@ -163,6 +163,12 @@
   Ayuda
 </button>
 <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content load_modal"></div>
+    </div>
+</div>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -195,89 +201,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.js"></script>
- <script>
-          $(document).ready(function(){
-            introJs().refresh()
-
-           if (localStorage.getItem("primeringreso") ==  null) {
-             	introJs().setOptions({
-                  	'skipLabel': 'Cerrar',
-                    'nextLabel': 'Siguiente',
-                    'prevLabel': 'Anterior',
-                    'exitOnEsc': 'false',
-                    'doneLabel': 'Cerrar',
-                    'showButtons': 'false',
-                    'exitOnOverlayClick': 'false',
-                    'tooltipPosition': 'right',
-                    'showStepNumbers' : 'false'
-                }).start();
-              	localStorage.setItem("primeringreso", "true");
-           }
-           else{}
-
-           $('#boton-consejos').click(function(){
-  				introJs().showHints();
-         });
-
-           $('#boton-ayuda').click(function(){
-
-            	introJs().setOptions({
-                  	'skipLabel': 'Cerrar',
-                    'nextLabel': 'Siguiente',
-                    'prevLabel': 'Anterior',
-                    'exitOnEsc': 'false',
-                    'doneLabel': 'Cerrar',
-                    'showButtons': 'false',
-                    'exitOnOverlayClick': 'false',
-                    'tooltipPosition': 'right',
-                    'showStepNumbers' : 'false'
-                }).start();
-           });
-
-          });
-</script>
-
-<!-- scripts para ajax de concursos y requisitos -->
-<script>
-  $('#concursosAjaxSelect').on('change',function(e){
-    $('#requisitositemsList').empty();
-      var concursoid = e.target.value;
-      $("#ajax_loader").show();
-      $.get('/ajax-concursos?concursoid='+concursoid, function(data){
-
-        //cargo el select de templates de requisitos
-        $('#requisitosAjaxSelect').empty();
-        $.each(data, function(index, reqObject){
-          $('#requisitosAjaxSelect').append('<option value="'+ reqObject.id+'">'+reqObject.descripcion + "</option>")
-        });
-
-        //cargo la grilla con requisitos items
-        loadRequisitosItems();
-
-        $("#ajax_loader").hide();
-
-      })
-  });
-
-  $('#requisitosAjaxSelect').on('change',function(e){
-    if (!($("#ajax_loader").is(':visible'))) $("#ajax_loader").show();
-
-    //loadRequisitosItems();
-  });
-
-function loadRequisitosItems()
-{
-  //cada vez que cambio el template de requisitos, traigo los nuevos items
-      $.get('/ajax-requisitos?requisitoid='+$('#requisitosAjaxSelect').val(), function(data){
-          $('#requisitositemsList').empty();
-          $.each(data, function(index, reqItemsObject){
-            $('#requisitositemsList').append('<li><input id="'+reqItemsObject.descripcion+'" name="requisitositems[]" value="'+reqItemsObject.id+'" type="checkbox"></input><label for="' +reqItemsObject.descripcion+'"><span>'+reqItemsObject.descripcion+'</span></label></li>');
-          });
-
-          if (($("#ajax_loader").is(':visible'))) $("#ajax_loader").hide();
-      })
-}
-</script>
+<script src="{{ URL::asset('js/help.js') }}"></script>
+<script src="{{ URL::asset('js/mesaentrada.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
 

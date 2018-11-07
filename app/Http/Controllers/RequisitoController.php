@@ -11,6 +11,8 @@ use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
 use App\Models\Categoria;
+use App\Models\Requisito;
+use App\Models\RequisitoItem;
 use App\Models\Perfiles;
 
 class RequisitoController extends AppBaseController
@@ -81,8 +83,14 @@ class RequisitoController extends AppBaseController
 
             return redirect(route('requisitos.index'));
         }
-
         return view('requisitos.show')->with('requisito', $requisito);
+    }
+
+    public function showItems($id)
+    {
+        $requisito = $this->requisitoRepository->findWithoutFail($id);
+        $items = RequisitoItem::where([['requisito_id','=',$id]])->get();
+        return view('requisitos.items')->with('requisito', $requisito)->with('items',$items);
     }
 
     /**
@@ -156,5 +164,45 @@ class RequisitoController extends AppBaseController
         Flash::success('Requisito deleted successfully.');
 
         return redirect(route('requisitos.index'));
+    }
+
+    public function cargaritems($id,Request $request)
+    {
+        DB::beginTransaction();
+        try{
+            $input = $request->all();
+            $itemsNew = $input["RequisitosItems"];
+            $itemsOld = RequisitoItem::where([['requisito_id','=',$id]])->get();
+
+            //recorro los items del requisito actual
+            foreach ($itemsOld as $itemOld) {
+                if (!$itemsNew->contains('id', $itemOld->id))
+                {
+                    $model = RequisitoItem::find($itemOld->id);
+                    $model->delete();
+                }
+            }
+
+            foreach ($itemsNew as $itemNew) {
+                if ($itemNew->id=="")
+                {
+                    $model = new RequisitoItem();
+                    $model->descripcion = $itemNew->descripcion;
+                    $model->requisito_id = $id;
+
+                    $model->save();
+                }
+            }
+
+            DB::commit();
+            Flash::success('El concurso se ha sustanciado.');
+            
+        }
+        catch(\Exception $e)
+        {
+            DB::rollBack();
+            Flash::error("Se produjo un error al intentar guardar la informacion. \nError: ".$e->getMessage());
+        }
+        return redirect(route('concursos.index'));
     }
 }

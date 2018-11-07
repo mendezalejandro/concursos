@@ -40,13 +40,17 @@ Route::get('/desiertosustanciacion/{id}','ConcursoController@desiertosustanciaci
 
 // Email related routes
 Route::get('mail/send/{id}', 'MailController@send');
+
+//carga de requisitos items
+Route::get('/showItems/{id}', 'RequisitoController@showItems');
+Route::any('/cargaritems/{id}','RequisitoController@cargaritems')->name('requisitos.cargaritems');
 /*----------------------------------------------------*/
 
 //cambiar estados
 Route::get('/showSustanciar/{id}','ConcursoController@showSustanciar');
-Route::any('/sustanciar/{id}','ConcursoController@sustanciar')->name('concursos.sustanciar');;
+Route::any('/sustanciar/{id}','ConcursoController@sustanciar')->name('concursos.sustanciar');
 Route::get('/showCerrar/{id}','ConcursoController@showCerrar');
-Route::any('/cerrar/{id}','ConcursoController@cerrar')->name('concursos.cerrar');;
+Route::any('/cerrar/{id}','ConcursoController@cerrar')->name('concursos.cerrar');
 
 Route::get('/ajax-concursos', function(){
   $concursoid = Input::get('concursoid');
@@ -155,7 +159,7 @@ Route::middleware(['Miembro'])->group(function () {
 
   Route::resource('mesaEntradas', 'MesaEntradaController');
 
-  Route::resource('requisitos', 'RequisitoController', ['except' => ['edit', 'create', 'store', 'update', 'destroy'] ]);
+  Route::resource('requisitos', 'RequisitoController', ['except' => ['edit', 'create', 'store', 'update', 'destroy','cargaritems'] ]);
 
   Route::resource('requisitoItems', 'RequisitoItemController', ['except' => ['edit', 'create', 'store', 'update', 'destroy'] ]);
 

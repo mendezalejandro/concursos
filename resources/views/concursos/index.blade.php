@@ -19,14 +19,9 @@
             </div>
         </div>
         <div class="text-center">
-
         </div>
     </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content load_modal"></div>
-    </div>
-</div>
+
 
 @endsection
