@@ -55,12 +55,11 @@ class MesaEntradaController extends AppBaseController
         ->where('perfil_id',"=",$concurso->perfil_id)
         ->where('dedicacion',"=",$concurso->dedicacion);
 
-        $requisitositems = RequisitoItem::where('requisito_id',"=",$requisitos->first()->id)
-        ->pluck('descripcion' , 'id');
+        $requisitositems = RequisitoItem::where('requisito_id',"=",$requisitos->first()->id)->pluck('descripcion' , 'id');
 
         $requisitos = $requisitos->pluck('descripcion' , 'id');
         
-        return view('mesaentradas.create' , compact('concursos', 'requisitos', 'requisitositems'));
+        return view('mesaentradas.create' , compact('concursos', 'requisitos', 'requisitositems'))->with('isEdit', false);
     }
 
     /**
@@ -147,13 +146,24 @@ class MesaEntradaController extends AppBaseController
     {
         $mesaentrada = $this->mesaEntradasRepository->findWithoutFail($id);
 
+        $concursos = Concurso::all();
+        $concurso = $concursos->first();
+        $concursos = $concursos->pluck('referenciaGeneral' , 'id');
+        $requisitos = Requisito::where('categoria_id',"=",$concurso->categoria_id)
+        ->where('perfil_id',"=",$concurso->perfil_id)
+        ->where('dedicacion',"=",$concurso->dedicacion);
+
+        $requisitositems = RequisitoItem::where('requisito_id',"=",$requisitos->first()->id)
+        ->pluck('descripcion' , 'id');
+
+        $requisitos = $requisitos->pluck('descripcion' , 'id');
         if (empty($mesaentrada)) {
             Flash::error('Postulante not found');
 
             return redirect(route('mesaEntradas.index'));
         }
 
-        return view('mesaentradas.edit')->with('mesaentrada', $mesaentrada);
+        return view('mesaentradas.edit', compact('concursos', 'requisitos', 'requisitositems'))->with('mesaentrada', $mesaentrada)->with('isEdit', true);
     }
 
     /**

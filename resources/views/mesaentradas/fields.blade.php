@@ -51,8 +51,10 @@
     {!! Form::text('direccion', null, ['class' => 'form-control']) !!}
 </div>
 
-
-<!-- Seccion de asignacion a concurso-->
+ @if ($isEdit)
+ <button id="confirmarSustanciacion" type="button" class="btn btn-success" data-slug="" disabled>Confirmar</button>
+ @else
+ <!-- Seccion de asignacion a concurso-->
 <div class="form-group col-sm-12">
     <section class="content-header">
             <h1>
@@ -97,6 +99,9 @@
     @endforeach
     </ul>
 </div>
+
+ @endif
+ 
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
