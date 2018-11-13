@@ -19,14 +19,14 @@
 <div class='btn-group'>
     <!--cargar items de un reuiqisto-->
     <button name="itemsModal" data-toggle="tooltip" title ="Items" type="button" class="btn btn-success btn-xs"
-     data-toggle="modal" data-id="{{ $id  }}" data-post="data-php" data-action="cargarItems">Items</button>
+     data-toggle="modal" data-id="{{ $id  }}" data-post="data-php" data-action="cargaritems">Items</button>
  </div>
 {!! Form::close() !!}
 
 <script>
     $('button[name="itemsModal"]').on('click', function(){
         var this_id = $(this).attr('data-id');
-            $.get( "/showItems/" + this_id, function( data ) {
+            $.get( "{{ url('/showItems') }}/" + this_id, function( data ) {
                 $('#myModal').modal();
                 $('#myModal').on('shown.bs.modal', function(){
                     $('#myModal .load_modal').html(data);

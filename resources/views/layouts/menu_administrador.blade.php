@@ -65,10 +65,6 @@
     <li class="{{ Request::is('Llamado*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
         <a href="{!! route('llamados.index') !!}"><i class="glyphicon glyphicon-bullhorn text-red"></i><span>Llamados</span></a>
     </li>
-    <li class="{{ Request::is('LlamadoConcurso*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
-        <a href="{!! route('llamadoConcursos.index') !!}"><i class="glyphicon glyphicon-bullhorn text-red"></i><span>Llamados a Concursos</span></a>
-    </li>
-
   </ul>
 </li>
 <!---------------------------------------------------------------------------------------------------------------------->
@@ -80,9 +76,6 @@
   <ul class="treeview-menu">
     <li class="{{ Request::is('Requisito*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
         <a href="{!! route('requisitos.index') !!}"><i class="fa fa-file-text text-red"></i><span>Requisitos</span></a>
-    </li>
-    <li class="{{ Request::is('RequisitoItems*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
-        <a href="{!! route('requisitoItems.index') !!}"><i class="fa fa-folder-open text-red"></i><span>Requisitos Items</span></a>
     </li>
     <li class="{{ Request::is('RequisitoPostulante*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
         <a href="{!! route('requisitoPostulantes.index') !!}"><i class="fa fa-archive text-red"></i><span>Requisitos Postulantes</span></a>

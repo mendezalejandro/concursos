@@ -22,7 +22,8 @@
         //envio datos al servidor
         $.ajax({
                     /* the route pointing to the post function */
-                    url: '/cargaritems/'+{!!$requisito->id!!},
+                    
+                    url: "{{ url('/cargaritems') }}/"+{!!$requisito->id!!},
                     type: 'POST',
                     /* send the csrf-token and the input to the controller */
                     data: {_token: CSRF_TOKEN, RequisitosItems: items},
@@ -32,7 +33,7 @@
                         $('#myModal').modal('hide');
                         $('body').removeClass('modal-open');
                         $('.modal-backdrop').remove();
-                        window.location = "/requisitos";
+                        window.location = "{{ url('/requisitos') }}/";
                     },
                     error: function (data) { 
                         alert("error");

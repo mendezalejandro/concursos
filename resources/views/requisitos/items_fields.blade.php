@@ -17,7 +17,7 @@
             <table border="1" style="width:100%" id="itemsTableHTML">
             @foreach($items as $item) 
             <tr>
-                <td>
+                <td style="display:none;">
                     {{ $item->id}}
                 </td>
                 <td>
@@ -40,7 +40,7 @@
         var newItem = $('#inputRequisitoItem').val();
         $('#inputRequisitoItem').val("");
         
-        $('#itemsTableHTML').append('<tr><td></td><td>'+newItem+'</td><td><a name="removeItem" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-remove"></i></a></td></tr>');
+        $('#itemsTableHTML').append('<tr><td style="display:none;"></td><td>'+newItem+'</td><td><a name="removeItem" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-remove"></i></a></td></tr>');
         var items=[];
     });
 

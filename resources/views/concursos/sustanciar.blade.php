@@ -51,7 +51,7 @@
         //envio datos al servidor
         $.ajax({
                     /* the route pointing to the post function */
-                    url: '/sustanciar/'+{!!$concurso->id!!},
+                    url: "{{ url('/sustanciar') }}/"+{!!$concurso->id!!},
                     type: 'POST',
                     /* send the csrf-token and the input to the controller */
                     data: {_token: CSRF_TOKEN, file: localStorage.getItem("base64file"), ordenesMerito: ordenes},
@@ -62,7 +62,7 @@
                         $('body').removeClass('modal-open');
                         $('.modal-backdrop').remove();
                         localStorage.removeItem("base64file");
-                        window.location = "/concursos";
+                        window.location = "{{ url('/concursos') }}/";
                     },
                     error: function (data) { 
                         alert("error");

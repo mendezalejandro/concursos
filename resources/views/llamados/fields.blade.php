@@ -8,7 +8,6 @@
 <!-- Año Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('año', 'AÑO') !!}
-    <span class="text-danger"> (*)  </span>
     {!! Form::text('año', null, ['class' => 'form-control']) !!}
 </div>
 

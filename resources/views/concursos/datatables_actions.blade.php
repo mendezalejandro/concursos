@@ -67,7 +67,7 @@
     });
     $('button[name="cerrarModal"]').on('click', function(){
         var this_id = $(this).attr('data-id');
-            $.get( "/showCerrar/" + this_id, function( data ) {
+            $.get( "{{ url('/showCerrar') }}/" + this_id, function( data ) {
                 $('#myModal').modal();
                 $('#myModal').on('shown.bs.modal', function(){
                     $('#myModal .load_modal').html(data);

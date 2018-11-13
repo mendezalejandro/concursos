@@ -84,8 +84,6 @@ class Concurso extends Model
       'referenciaGeneral' => 'required|string|max:10',
       'cargos' => 'required',
       'cargos' => 'numeric|max:10',
-      'fechaInicio' => 'required',
-      'fechaFin' => 'required',
       'dedicacion' => 'required',
       'lineaDesarrollo' => 'string',
       'requisitos' => 'string',

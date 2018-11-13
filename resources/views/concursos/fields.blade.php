@@ -1,3 +1,10 @@
+<!-- Asignatura Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('llamado_id', 'LLAMADO') !!}
+       <span class="text-danger"> (*)  </span>
+    {!! Form::select ('llamado_id', $llamados, null, ['class' => 'form-control' , 'placeholder' => 'Seleccione un llamado']) !!}
+</div>
+
 <!-- Referenciainstituto Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('referenciaInstituto', 'REFERENCIA INSTITUTO') !!}
@@ -70,22 +77,6 @@
 <div class="form-group col-sm-6">
     {!! Form::label('observaciones', 'OBSERVACIONES') !!}
     {!! Form::text('observaciones', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Fechainicio Field -->
-<div class="form-group col-sm-6">
-
-    {!! Form::label('fechaInicio', 'FECHA DE INICIO') !!}
-       <span class="text-danger"> (*)  </span>
-    {!! Form::date('fechaInicio', null, ['class' => 'form-control']) !!}
-
-</div>
-
-<!-- Fechafin Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('fechaFin', 'FECHA DE FIN') !!}
-       <span class="text-danger"> (*)  </span>
-    {!! Form::date('fechaFin', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Fechafin Field -->

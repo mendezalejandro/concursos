@@ -193,8 +193,8 @@ CREATE TABLE `concursos` (
   `usuarioSustanciacion` int(11) DEFAULT NULL,
   `usuarioCierre` int(11) DEFAULT NULL COMMENT 'Usuario que genero el cierre.',
   `observaciones` varchar(200) DEFAULT NULL,
-  `fechaInicio` datetime NOT NULL COMMENT 'Fecha de inicio de inscripciones al concurso\n',
-  `fechaFin` datetime NOT NULL COMMENT 'Fecha final de inscipciones al concurso',
+  `fechaInicio` datetime NULL COMMENT 'Fecha de inicio de inscripciones al concurso\n',
+  `fechaFin` datetime NULL COMMENT 'Fecha final de inscipciones al concurso',
   `estado` enum('Pendiente','Cerrado','Impugnado','Vacante','Nulo','DesiertoConvocatoria','DesiertoSustanciacion','Sustanciado') NOT NULL COMMENT '1: PENDIENTE\n2: CERRADO\n3: IMPUGNADO\n4: VACANTE\n5: NULO\n6: DESIERTO DESDE CONVOCATORIA\n7: DESIERTO DESDE SUSTANCIACION\n8: SUSTANCIADO',
   `dedicacion` enum('Simple','Exclusiva','Semiexclusiva') NOT NULL COMMENT '1 = SIMPLE\n2 = EXCLUSIVA\n3 = SEMIEXCLUSIVA',
   `dictamen` longblob,
@@ -333,8 +333,8 @@ DROP TABLE IF EXISTS `llamados`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `llamados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo` varchar(5) NOT NULL,
-  `año` year(4) NOT NULL,
+  `codigo` varchar(10) NOT NULL,
+  `año` year(4) NULL,
   `fechaInicio` datetime NOT NULL,
   `fechaFin` datetime NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,

@@ -11,6 +11,8 @@ use App\Repositories\ConcursoRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\Llamado;
+use App\Models\LlamadoConcursos;
 use App\Models\Asignatura;
 use App\Models\Categoria;
 use App\Models\Perfiles;
@@ -48,13 +50,14 @@ class ConcursoController extends AppBaseController
      */
     public function create()
     {
-      $asignaturas = Asignatura::pluck('nombre', 'id');
-      $categorias = Categoria::pluck('nombre', 'id');
-      $perfiles = Perfiles::pluck('nombre', 'id');
-      $usuarios = User::pluck('name' , 'id');
-      $estado = Collect(['Pendiente' => 'Pendiente' , 'Cerrado' => 'Cerrado' , 'Impugnado' => 'Impugnado' , 'Vacante' => 'Vacante', 'Nulo' => 'Nulo', 'DesiertoConvocatoria' => 'DesiertoConvocatoria', 'DesiertoSustanciacion' => 'DesiertoSustanciacion']);
-      $dedicaciones = Collect(['Simple' => 'Simple' , 'Exclusiva' => 'Exclusiva' , 'Semiexclusiva' => 'Semiexclusiva']);
-        return view('concursos.create',compact( 'asignaturas' , 'categorias' , 'perfiles' , 'usuarios' , 'estado' , 'dedicaciones'));
+        $llamados = Llamado::pluck('codigo', 'id');
+        $asignaturas = Asignatura::pluck('nombre', 'id');
+        $categorias = Categoria::pluck('nombre', 'id');
+        $perfiles = Perfiles::pluck('nombre', 'id');
+        $usuarios = User::pluck('name' , 'id');
+        $estado = Collect(['Pendiente' => 'Pendiente' , 'Cerrado' => 'Cerrado' , 'Impugnado' => 'Impugnado' , 'Vacante' => 'Vacante', 'Nulo' => 'Nulo', 'DesiertoConvocatoria' => 'DesiertoConvocatoria', 'DesiertoSustanciacion' => 'DesiertoSustanciacion']);
+        $dedicaciones = Collect(['Simple' => 'Simple' , 'Exclusiva' => 'Exclusiva' , 'Semiexclusiva' => 'Semiexclusiva']);
+        return view('concursos.create',compact( 'llamados','asignaturas' , 'categorias' , 'perfiles' , 'usuarios' , 'estado' , 'dedicaciones'));
     }
 
     /**
@@ -66,19 +69,36 @@ class ConcursoController extends AppBaseController
      */
     public function store(CreateConcursoRequest $request)
     {
-        $input = $request->all();
-        $input["estado"] = "Pendiente";
-
-        if($input["fechaSustanciacion"] != null && $input["fechaSustanciacion"]!="")
+        DB::beginTransaction();
+        try{
+            $input = $request->all();
+            $input["estado"] = "Pendiente";
+            
+            if($input["fechaSustanciacion"] != null && $input["fechaSustanciacion"]!="")
             {
                 $input["estado"] = "Cerrado";
                 $input["usuarioCierre"]= Auth::id();
             }
+            //guardo el concurso
+            $concurso = $this->concursoRepository->create($input);
 
-        $concurso = $this->concursoRepository->create($input);
+            //guardo relacion del llamado con el concurso
+            $model = new LlamadoConcursos();
+            $model->llamado_id = $input['llamado_id'];
+            $model->concurso_id = $concurso['id'];
 
-
-        Flash::success('Concurso saved successfully.');
+            $model->save();
+            
+            
+            Flash::success('Concurso saved successfully.');
+            DB::commit();
+            
+        }
+        catch(\Exception $e)
+        {
+            Flash::error("Se produjo un error al intentar guardar la informacion. \nError: ".$e->getMessage());
+            DB::rollBack();
+        }
 
         return redirect(route('concursos.index'));
     }
@@ -113,6 +133,7 @@ class ConcursoController extends AppBaseController
      */
     public function edit($id)
     {
+        $llamados = Llamado::pluck('codigo', 'id');
         $asignaturas = Asignatura::pluck('nombre', 'id');
         $categorias = Categoria::pluck('nombre', 'id');
         $perfiles = Perfiles::pluck('nombre', 'id');
@@ -121,14 +142,13 @@ class ConcursoController extends AppBaseController
         $dedicaciones = Collect(['Simple' => 'Simple' , 'Exclusiva' => 'Exclusiva' , 'Semiexclusiva' => 'Semiexclusiva']);
         $concurso = $this->concursoRepository->findWithoutFail($id);
 
-
         if (empty($concurso)) {
             Flash::error('Concurso not found');
 
             return redirect(route('concursos.index'));
         }
 
-        return view('concursos.edit' , compact( 'asignaturas' , 'categorias' , 'perfiles' , 'usuarios' , 'estado' , 'dedicaciones' ))->with('concurso', $concurso);
+        return view('concursos.edit' , compact( 'llamados', 'asignaturas' , 'categorias' , 'perfiles' , 'usuarios' , 'estado' , 'dedicaciones' ))->with('concurso', $concurso);
     }
 
     /**
@@ -168,18 +188,30 @@ class ConcursoController extends AppBaseController
      */
     public function destroy($id)
     {
-        $concurso = $this->concursoRepository->findWithoutFail($id);
+        DB::beginTransaction();
+        try{
+            //primero elimino la relacion con el llamado
+            LlamadoConcursos::where([['concurso_id','=',$id]])->delete();
+            //luego elimino el concurso
+            $concurso = $this->concursoRepository->findWithoutFail($id);
 
-        if (empty($concurso)) {
-            Flash::error('Concurso not found');
+            if (empty($concurso)) {
+                Flash::error('Concurso not found');
 
-            return redirect(route('concursos.index'));
+                return redirect(route('concursos.index'));
+            }
+
+            $this->concursoRepository->delete($id);
+
+            Flash::success('Concurso eliminado successfully.');
+            DB::commit();
+            
         }
-
-        $this->concursoRepository->delete($id);
-
-        Flash::success('Concurso deleted successfully.');
-
+        catch(\Exception $e)
+        {
+            Flash::error("Se produjo un error al intentar guardar la informacion. \nError: ".$e->getMessage());
+            DB::rollBack();
+        }
         return redirect(route('concursos.index'));
     }
 

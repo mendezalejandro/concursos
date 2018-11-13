@@ -83,10 +83,10 @@ class ConcursoDataTable extends DataTable
     private function getColumns()
     {
         return [
+            'Referencia General' => ['name' => 'referenciaGeneral', 'data' => 'ref_gen'],
             'Asignatura' => ['name' => 'asignatura_id', 'data' => 'asig_nom'],
             //'perfil_id' => ['name' => 'perfil_id', 'data' => 'perfil_id'],
             'Categoria' => ['name' => 'categoria_id', 'data' => 'cat_nom'],
-            'Referencia General' => ['name' => 'referenciaGeneral', 'data' => 'ref_gen'],
             //'referenciaInstituto' => ['name' => 'referenciaInstituto', 'data' => 'referenciaInstituto'],
             'Cargos' => ['name' => 'cargos', 'data' => 'con_car'],
             //'lineaDesarrollo' => ['name' => 'lineaDesarrollo', 'data' => 'lineaDesarrollo'],
@@ -96,8 +96,6 @@ class ConcursoDataTable extends DataTable
             //'usuarioSustanciacion' => ['name' => 'usuarioSustanciacion', 'data' => 'usuarioSustanciacion'],
             //'usuarioCierre' => ['name' => 'usuarioCierre', 'data' => 'usuarioCierre'],
             //'observaciones' => ['name' => 'observaciones', 'data' => 'observaciones'],
-            'Fecha Inicio' => ['name' => 'fechaInicio', 'data' => 'con_fi'],
-            'Fecha Fin' => ['name' => 'fechaFin', 'data' => 'con_ff'],
             'Estado' => ['name' => 'estado', 'data' => 'con_est'],
             'Dedicacion' => ['name' => 'dedicacion', 'data' => 'con_ded']
         ];

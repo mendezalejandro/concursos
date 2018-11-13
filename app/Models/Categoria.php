@@ -32,7 +32,7 @@ class Categoria extends Model
     protected $casts = [
         'id' => 'integer',
         'nombre' => 'string',
-        'nivel' => 'boolean'
+        'nivel' => 'integer'
     ];
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\RequisitoDataTable;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateRequisitoRequest;
 use App\Http\Requests\UpdateRequisitoRequest;
@@ -14,6 +15,9 @@ use App\Models\Categoria;
 use App\Models\Requisito;
 use App\Models\RequisitoItem;
 use App\Models\Perfiles;
+use Auth;
+use View;
+use DB;
 
 class RequisitoController extends AppBaseController
 {
@@ -151,21 +155,30 @@ class RequisitoController extends AppBaseController
      */
     public function destroy($id)
     {
-        $requisito = $this->requisitoRepository->findWithoutFail($id);
+        DB::beginTransaction();
+        try{
+            RequisitoItem::where([['requisito_id','=',$id]])->delete();
+            $requisito = $this->requisitoRepository->findWithoutFail($id);
 
-        if (empty($requisito)) {
-            Flash::error('Requisito not found');
-
-            return redirect(route('requisitos.index'));
+            if (empty($requisito)) {
+                Flash::error('Requisito not found');
+    
+                return redirect(route('requisitos.index'));
+            }
+    
+            $this->requisitoRepository->delete($id);
+            DB::commit();
+            Flash::success('Requisitos eliminados.');
+            
         }
-
-        $this->requisitoRepository->delete($id);
-
-        Flash::success('Requisito deleted successfully.');
+        catch(\Exception $e)
+        {
+            DB::rollBack();
+            Flash::error("Se produjo un error al intentar eliminar la informacion. \nError: ".$e->getMessage());
+        }
 
         return redirect(route('requisitos.index'));
     }
-
     public function cargaritems($id,Request $request)
     {
         DB::beginTransaction();
@@ -176,7 +189,15 @@ class RequisitoController extends AppBaseController
 
             //recorro los items del requisito actual
             foreach ($itemsOld as $itemOld) {
-                if (!$itemsNew->contains('id', $itemOld->id))
+                $existsValue = false;
+                foreach ($itemsNew as $i) {
+                    if($i['id'] == $itemOld->id)
+                    {
+                        $existsValue = true;
+                        break;
+                    }
+                }
+                if (!$existsValue)
                 {
                     $model = RequisitoItem::find($itemOld->id);
                     $model->delete();
@@ -184,10 +205,10 @@ class RequisitoController extends AppBaseController
             }
 
             foreach ($itemsNew as $itemNew) {
-                if ($itemNew->id=="")
+                if ($itemNew['id']=="")
                 {
                     $model = new RequisitoItem();
-                    $model->descripcion = $itemNew->descripcion;
+                    $model->descripcion = $itemNew['descripcion'];
                     $model->requisito_id = $id;
 
                     $model->save();
@@ -195,7 +216,7 @@ class RequisitoController extends AppBaseController
             }
 
             DB::commit();
-            Flash::success('El concurso se ha sustanciado.');
+            Flash::success('Requisitos guardados.');
             
         }
         catch(\Exception $e)
@@ -203,6 +224,6 @@ class RequisitoController extends AppBaseController
             DB::rollBack();
             Flash::error("Se produjo un error al intentar guardar la informacion. \nError: ".$e->getMessage());
         }
-        return redirect(route('concursos.index'));
+        return redirect(route('requisitos.index'));
     }
 }
