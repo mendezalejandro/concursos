@@ -47,6 +47,7 @@ class Requisito extends Model
       'categoria_id' => 'required',
       'perfil_id' => 'required',
       'dedicacion' => 'required',
+        'dedicacion' => 'string|max:40|alpha_dash',
     ];
 
     /**
@@ -62,7 +63,7 @@ class Requisito extends Model
      **/
     public function perfile()
     {
-        return $this->belongsTo(\App\Models\Perfile::class);
+        return $this->belongsTo(\App\Models\Perfiles::class);
     }
 
     /**

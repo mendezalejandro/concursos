@@ -41,7 +41,7 @@ class RequisitoItem extends Model
      */
     public static $rules = [
       'requisito_id' => 'required',
-      'descripcion' => 'required'
+      'descripcion' => 'required|max:50|alpha_num'
     ];
 
     /**

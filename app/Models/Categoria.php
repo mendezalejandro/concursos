@@ -32,7 +32,7 @@ class Categoria extends Model
     protected $casts = [
         'id' => 'integer',
         'nombre' => 'string',
-        'nivel' => 'boolean'
+        'nivel' => 'integer'
     ];
 
     /**
@@ -41,8 +41,8 @@ class Categoria extends Model
      * @var array
      */
     public static $rules = [
-      'nombre' => 'required',
-      'nivel' => 'required'
+      'nombre' => 'required|max:60|alpha',
+      'nivel' => 'required|max:2|numeric'
     ];
 
     /**

@@ -185,6 +185,9 @@ return [
         Yajra\DataTables\DatatablesServiceProvider::class,
         Yajra\Datatables\ButtonsServiceProvider::class,
 
+        Intervention\Image\ImageServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -236,6 +239,8 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+        'PDF' => 'Barryvdh\DomPDF\Facade',
     ],
 
 ];

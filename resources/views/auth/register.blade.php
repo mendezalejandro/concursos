@@ -44,7 +44,6 @@
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-
             position: fixed;
             top: 0;
             left: 0;
@@ -52,23 +51,27 @@
             min-width: 100%;
             min-height: 100%;
           }
+          #box-register{
+            border-radius: 10px;
+            height: 100%; margin: 0px 0px 0px 0px;  width: 100%; flex-direction: column; display: block;   place-content: center; align-items: center;
+          }
 </style>
 </head>
 <body class="">
 <div class="register-box">
-    <div class="register-logo">
-        <a href="{{ url('/home') }}"><b>Concursos Docentes </b>UNAJ</a>
+    <div class="login-logo" style = " margin: -35px 0px 0px 0px;">
+        <a href="{{ url('/home') }}"style = "color:#fffdfd"><b>Concurso Docentes UNAJ</b></a>
     </div>
 
-    <div class="register-box-body">
-        <p class="login-box-msg">Iniciar Sesion</p>
+    <div class="register-box-body" id="box-register">
+        <h4><p class="login-box-msg">Nuevo usuario</p></h4>
 
         <form method="post" action="{{ url('/register') }}">
 
             {!! csrf_field() !!}
 
             <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}" OnHover="play(this,'hoveraudio')">
-                <input type="text" required= true class="form-control" name="name" value="{{ old('name') }}" placeholder="Nombre Completo">
+                <input type="text" required= true class="form-control" name="name" value="{{ old('name') }}" placeholder="Nombre" autofocus>
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
                 @if ($errors->has('name'))
@@ -90,7 +93,7 @@
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}" OnHover="play(this,'hoveraudio')">
-                <input type="password" id=password required= true class="form-control" name="password" placeholder="Contraseña">
+                <input type="password" id=password required= true class="form-control" name="password" placeholder="Contrase&ntilde;a">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
                 @if ($errors->has('password'))
@@ -101,7 +104,7 @@
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? ' has-error' : '' }}" OnHover="play(this,'hoveraudio')">
-                <input type="password" id=password_conf required= true name="password_confirmation" class="form-control" placeholder="Confirme contraseña">
+                <input type="password" id=password_conf required= true name="password_confirmation" class="form-control" placeholder="Confirmar Contrase&ntilde;a">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
                 @if ($errors->has('password_confirmation'))
@@ -111,23 +114,21 @@
                 @endif
             </div>
 
-            <div class="row">
-                <div class="col-xs-8">
+                 <div class=".col-12 .col-sm-6 .col-lg-8">
                     <div id=registerCheckbox class="checkbox icheck">
                         <label>
-                            <input type="checkbox"> Acepto los <a href="#">terminos</a>
+                            <input type="checkbox"> <a href="#">Terminos y condiciones</a>
                         </label>
                     </div>
                 </div>
                 <!-- /.col -->
-                <div class="col-xs-4">
+                <div class=".col-6 .col-sm-4">
                     <button type="submit" disabled=true id="registerButton" class="btn btn-primary btn-block btn-flat">Registro</button>
                 </div>
                 <!-- /.col -->
-            </div>
         </form>
 
-        <a href="{{ url('/login') }}" class="text-center">Ya Soy Miembro</a>
+        <!-- <a href="{{ url('/login') }}" class="text-center">Ya Soy Miembro</a>-->
     </div>
     <!-- /.form-box -->
 </div>

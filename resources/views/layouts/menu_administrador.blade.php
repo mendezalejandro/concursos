@@ -19,9 +19,6 @@
         <li class="{{ Request::is('ConcursoJurado*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
           <a href="{!! route('concursoJurados.index') !!}"><i class="glyphicon glyphicon-transfer text-red" ></i><span>Asignar Jurados</span></a>
         </li>
-        <li class="{{ Request::is('ConcursoPostulante*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
-          <a href="{!! route('concursoPostulantes.index') !!}"><i class="glyphicon glyphicon-transfer text-red" ></i><span>Asignar Postulantes</span></a>
-        </li>
         <li class="{{ Request::is('CargoConcursado*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
             <a href="{!! route('cargoConcursados.index') !!}"><i class="fa fa-contao text-red"></i><span>Cargos Concursados</span></a>
         </li>
@@ -53,7 +50,9 @@
     <li class="{{ Request::is('Postulante*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
         <a href="{!! route('postulantes.index') !!}"><i class="fa fa-user-plus text-red"></i><span>Postulantes</span></a>
     </li>
-
+    <li class="{{ Request::is('MesaEntrada*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
+        <a href="{!! route('mesaEntradas.index') !!}"><i class="fa fa-user-plus text-red"></i><span>Mesa de entradas</span></a>
+    </li>
   </ul>
 </li>
 <!---------------------------------------------------------------------------------------------------------------------->
@@ -66,10 +65,6 @@
     <li class="{{ Request::is('Llamado*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
         <a href="{!! route('llamados.index') !!}"><i class="glyphicon glyphicon-bullhorn text-red"></i><span>Llamados</span></a>
     </li>
-    <li class="{{ Request::is('LlamadoConcurso*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
-        <a href="{!! route('llamadoConcursos.index') !!}"><i class="glyphicon glyphicon-bullhorn text-red"></i><span>Llamados a Concursos</span></a>
-    </li>
-
   </ul>
 </li>
 <!---------------------------------------------------------------------------------------------------------------------->
@@ -81,9 +76,6 @@
   <ul class="treeview-menu">
     <li class="{{ Request::is('Requisito*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
         <a href="{!! route('requisitos.index') !!}"><i class="fa fa-file-text text-red"></i><span>Requisitos</span></a>
-    </li>
-    <li class="{{ Request::is('RequisitoItems*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
-        <a href="{!! route('requisitoItems.index') !!}"><i class="fa fa-folder-open text-red"></i><span>Requisitos Items</span></a>
     </li>
     <li class="{{ Request::is('RequisitoPostulante*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
         <a href="{!! route('requisitoPostulantes.index') !!}"><i class="fa fa-archive text-red"></i><span>Requisitos Postulantes</span></a>
@@ -101,7 +93,7 @@
 </a>
 <ul class="treeview-menu">
   <li class="{{ Request::is('Area*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
-      <a href="{!! route('areas.index') !!}"><i class="fa fa-adn text-red"></i><span>Areas</span></a>
+      <a href="{!! route('areas.index') !!}"><i class="fa fa-adn text-red"></i><span>Areas Temáticas</span></a>
   </li>
 
   <li class="{{ Request::is('Asignatura*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
@@ -140,6 +132,20 @@
     </li>
     <li class="{{ Request::is('User*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
         <a href="{!! route('users.index') !!}"><i class="fa fa-user text-red"></i><span>Usuarios</span></a>
+    </li>
+
+  </ul>
+</li>
+
+<!---------------------------------------------------------------------------------------------------------------------->
+<li class="treeview" data-intro='Función netamente administrativa, podra gestionar todos los usuarios del sistema.'>
+  <a href="#">
+  <i class="fa fa-list text-red " ></i> <span>Reportes</span>
+    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+  </a>
+  <ul class="treeview-menu">
+    <li class="{{ Request::is('reportes*') ? 'active' : '' }}" Onclick="play(this,'clickaudio')">
+        <a href="{!! route('reportes.index') !!}"><i class="fa fa-tree text-red"></i><span>Reportes</span></a>
     </li>
 
   </ul>

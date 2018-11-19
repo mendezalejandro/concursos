@@ -44,7 +44,8 @@ class ConcursoJuradoController extends AppBaseController
     public function create()
     {
         $concursos = Concurso::pluck('referenciaGeneral' ,'id' );
-        $jurados = Jurado::where('tipo','Jurado')->pluck('apellidos' , 'id');
+        
+        $jurados = Jurado::selectRaw('id, CONCAT(apellidos," ",nombres) as full_name')->orderBy('apellidos')->pluck('full_name', 'id');
         $categorias = Categoria::pluck('nombre' , 'id');
         $niveles = collect(['Interno'=>'Interno' , 'Externo' => 'Externo']);
         $tipoJurados = collect(['Titular' => 'Titular' , 'Suplente' => 'Suplente']);
@@ -61,10 +62,18 @@ class ConcursoJuradoController extends AppBaseController
     public function store(CreateConcursoJuradoRequest $request)
     {
         $input = $request->all();
+        $concurso = Concurso::find($input['concurso_id']);
+        $categoriaConcurso = Categoria::find($concurso->categoria_id);
+        $categoriaSelected = Categoria::find($input['categoria_id']);
 
-        $concursoJurado = $this->concursoJuradoRepository->create($input);
-
-        Flash::success('Concurso Jurado saved successfully.');
+        if($categoriaSelected->nivel > $categoriaConcurso->nivel)
+        {
+            Flash::error('La categoria seleccionada no puede ser menor a la requerida en el concurso.');
+        }
+        else{
+            Flash::success('Concurso Jurado saved successfully.');
+            $concursoJurado = $this->concursoJuradoRepository->create($input);
+        }
 
         return redirect(route('concursoJurados.index'));
     }

@@ -15,6 +15,7 @@
        Area : {!! $concursoJurado->concurso->asignatura->area->nombre !!} <br>
        Estado del Concurso : {!! $concursoJurado->concurso->estado !!}
     </p>
+    <a href="{{ action('ConcursoController@show', $concursoJurado->concurso_id ) }}"><p> {!! Form::button('Ver Más!')!!}</a>
 </div>
 
 <!-- Jurado Id Field -->
@@ -24,7 +25,8 @@
        Documento :  {!! $concursoJurado->jurado->documento!!} <br>
        Nombre : {!! $concursoJurado->jurado->apellidos!!} <br>
        Apellido :  {!! $concursoJurado->jurado->nombres!!} <br>
-     </p>
+    </p>
+    <a href="{{ action('JuradoController@show', $concursoJurado->jurado_id ) }}"><p> {!! Form::button('Ver Más!')!!}</a>
 </div>
 
 <!-- Nivel Field -->

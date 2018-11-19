@@ -40,7 +40,6 @@
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-
             position: fixed;
             top: 0;
             left: 0;
@@ -48,18 +47,27 @@
             min-width: 100%;
             min-height: 100%;
           }
+          #box-login{
+            border-radius: 10px;
+            height: 100%; margin: 2px 0px 0px 0px;  width: 100%; flex-direction: column; display: block;   place-content: center; align-items: center;
+          }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/js/app.min.js"></script>
 
 </head>
 <body class="">
 <div class="login-box">
-    <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>Concursos Docentes</b><br>UNAJ</a>
+    <div class="login-logo" style = " margin: -50px 0px 0px 0px;">
+        <a href="{{ url('/home') }}" style = "color:#fffdfd"><b>Concursos Docentes UNAJ</b></a>
     </div>
 
     <!-- /.login-logo -->
-    <div class="login-box-body">
-        <p class="login-box-msg">Ingrese Email Para Resetear Su Contraseña</p>
+    <div class="login-box-body" id="box-login">
+        <h4><p class="login-box-msg">Ingrese su email</p></h4>
 
         @if (session('status'))
             <div class="alert alert-success">
@@ -71,7 +79,7 @@
             {!! csrf_field() !!}
 
             <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}" OnHover="play(this,'hoveraudio')">
-                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="pepe@ejemplo.com" autofocus>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 @if ($errors->has('email'))
                     <span class="help-block">
@@ -80,25 +88,19 @@
                 @endif
             </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary pull-right">
-                        <i class="fa fa-btn fa-envelope"></i> Envia Enlace de Reseteo de Contraseña
+            <div class="row" style=" height: 100%; margin: 0px; min-height: 100%; min-width: 100%; width: 100%; flex-direction: column; box-sizing: border-box; display: flex; max-width: 100%;place-content: center; align-items: center;" >
+                <div class=".col-12 .col-sm-6 .col-lg-12">
+                    <button type="submit" class="btn btn-primary">
+                    	Recuperar Contrase&ntilde;a
                     </button>
                 </div>
             </div>
-
         </form>
-
     </div>
     <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<!-- AdminLTE App -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/js/app.min.js"></script>
 </body>
 </html>
