@@ -86,18 +86,18 @@ class ConcursoDataTable extends DataTable
             'Referencia General' => ['name' => 'referenciaGeneral', 'data' => 'ref_gen'],
             'Asignatura' => ['name' => 'asignatura_id', 'data' => 'asig_nom'],
             //'perfil_id' => ['name' => 'perfil_id', 'data' => 'perfil_id'],
+            'Dedicacion' => ['name' => 'dedicacion', 'data' => 'con_ded'],
             'Categoria' => ['name' => 'categoria_id', 'data' => 'cat_nom'],
             //'referenciaInstituto' => ['name' => 'referenciaInstituto', 'data' => 'referenciaInstituto'],
             'Cargos' => ['name' => 'cargos', 'data' => 'con_car'],
             //'lineaDesarrollo' => ['name' => 'lineaDesarrollo', 'data' => 'lineaDesarrollo'],
             //'requisitos' => ['name' => 'requisitos', 'data' => 'requisitos'],
             'Expediente' => ['name' => 'expediente', 'data' => 'con_exp'],
-            'Fecha Sustanciacion' => ['name' => 'fechaSustanciacion', 'data' => 'con_fs'],
+            //'Fecha Sustanciacion' => ['name' => 'fechaSustanciacion', 'data' => 'con_fs'],
             //'usuarioSustanciacion' => ['name' => 'usuarioSustanciacion', 'data' => 'usuarioSustanciacion'],
             //'usuarioCierre' => ['name' => 'usuarioCierre', 'data' => 'usuarioCierre'],
             //'observaciones' => ['name' => 'observaciones', 'data' => 'observaciones'],
-            'Estado' => ['name' => 'estado', 'data' => 'con_est'],
-            'Dedicacion' => ['name' => 'dedicacion', 'data' => 'con_ded']
+            'Estado' => ['name' => 'estado', 'data' => 'con_est']
         ];
     }
 

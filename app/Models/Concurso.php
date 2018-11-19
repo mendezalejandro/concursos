@@ -18,9 +18,7 @@ class Concurso extends Model
 
     protected $dates = [
       'deleted_at',
-      'fechaSustanciacion',
-      'fechaInicio',
-      'fechaFin',
+      'fechaSustanciacion'
     ];
 
 
@@ -38,8 +36,6 @@ class Concurso extends Model
         'usuarioSustanciacion',
         'usuarioCierre',
         'observaciones',
-        'fechaInicio',
-        'fechaFin',
         'estado',
         'dedicacion',
         'dictamen'
@@ -85,10 +81,10 @@ class Concurso extends Model
       'cargos' => 'required',
       'cargos' => 'numeric|max:10',
       'dedicacion' => 'required',
-      'lineaDesarrollo' => 'string',
-      'requisitos' => 'string',
-      'expediente' => 'string',
-      'observaciones' => 'string',
+      //'lineaDesarrollo' => 'string',
+      //'requisitos' => 'string',
+      //'expediente' => 'string',
+      //'observaciones' => 'string',
     ];
 
     /**
