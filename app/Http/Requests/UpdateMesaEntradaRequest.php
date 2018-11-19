@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\MesaEntrada;
 
-class UpdatePostulanteRequest extends FormRequest
+class UpdateMesaEntradaRequest extends FormRequest
 {
 
     /**

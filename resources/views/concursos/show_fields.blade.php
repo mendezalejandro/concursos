@@ -75,18 +75,6 @@
     <p>{!! $concurso->observaciones !!}</p>
 </div>
 
-<!-- Fechainicio Field -->
-<div class="form-group">
-    {!! Form::label('fechaInicio', 'Fechainicio:') !!}
-    <p>{!! $concurso->fechaInicio !!}</p>
-</div>
-
-<!-- Fechafin Field -->
-<div class="form-group">
-    {!! Form::label('fechaFin', 'Fechafin:') !!}
-    <p>{!! $concurso->fechaFin !!}</p>
-</div>
-
 <!-- FechaCierre Field -->
 <div class="form-group">
     {!! Form::label('fechaCierre', 'Fecha de cierre:') !!}
@@ -97,4 +85,10 @@
 <div class="form-group">
     {!! Form::label('usuarioCierre', 'Usuario de cierre:') !!}
     <p>{!! $concurso->usuarioCierre!!}</p>
+</div>
+
+<!-- FechaSustanciacion Field -->
+<div class="form-group">
+    {!! Form::label('fechaSustanciacion', 'Fecha de sustanciación:') !!}
+    <p>{!! $concurso->fechaSustanciacion!!}</p>
 </div>
